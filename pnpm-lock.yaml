@@ -11,6 +11,9 @@ importers:
       '@inlang/paraglide-sveltekit':
         specifier: ^0.15.5
         version: 0.15.5(@sveltejs/kit@2.20.0(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.23.1)(vite@6.2.2(@types/node@22.13.10)(jiti@2.4.2)(lightningcss@1.29.2)))(svelte@5.23.1)(vite@6.2.2(@types/node@22.13.10)(jiti@2.4.2)(lightningcss@1.29.2)))
+      svelte-github-card:
+        specifier: ^0.1.1
+        version: 0.1.1(svelte@5.23.1)
     devDependencies:
       '@eslint/compat':
         specifier: ^1.2.5
@@ -1726,6 +1729,11 @@ packages:
     peerDependenciesMeta:
       svelte:
         optional: true
+
+  svelte-github-card@0.1.1:
+    resolution: {integrity: sha512-u+ryyMbk9ZQqTnFc9WcuYEMzJErHlDwsVuRILg6TIKu47qeMS909OAAojB1sUQ1qGQPvxE5WK2ZMXwa4yYUOoQ==}
+    peerDependencies:
+      svelte: ^5.0.0
 
   svelte@5.23.1:
     resolution: {integrity: sha512-DUu3e5tQDO+PtKffjqJ548YfeKtw2Rqc9/+nlP26DZ0AopWTJNylkNnTOP/wcgIt1JSnovyISxEZ/lDR1OhbOw==}
@@ -3504,6 +3512,10 @@ snapshots:
       postcss-scss: 4.0.9(postcss@8.5.3)
       postcss-selector-parser: 7.1.0
     optionalDependencies:
+      svelte: 5.23.1
+
+  svelte-github-card@0.1.1(svelte@5.23.1):
+    dependencies:
       svelte: 5.23.1
 
   svelte@5.23.1:
