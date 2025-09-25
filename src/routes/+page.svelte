@@ -1,131 +1,382 @@
-<script>
-	import Navbar from '$lib/components/Navbar.svelte';
+<script lang="ts">
+	import { onMount } from 'svelte';
+
+	let currentTime = '';
+
+	onMount(() => {
+		function updateTime() {
+			const now = new Date();
+			currentTime = now.toLocaleTimeString('zh-TW', {
+				hour12: false,
+				hour: '2-digit',
+				minute: '2-digit',
+				second: '2-digit'
+			});
+		}
+
+		updateTime();
+		const timeInterval = setInterval(updateTime, 1000);
+
+		return () => {
+			clearInterval(timeInterval);
+		};
+	});
 </script>
 
-<Navbar />
-<section
-	class="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-black"
->
-	<div class="z-10 px-4 text-center">
-		<h1 class="animate-fade-in mb-6 text-6xl font-bold tracking-tight text-white md:text-8xl">
-			White<span class="text-gray-300">Cloud</span>
-		</h1>
-		<p class="animate-fade-in-delay mb-8 text-xl font-light text-gray-300 md:text-2xl">
-			一些語錄
-		</p>
+<svelte:head>
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+	<link
+		href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@100..900&display=swap"
+		rel="stylesheet"
+	/>
+	<link href="https://fonts.cdnfonts.com/css/ocr-a-bt" rel="stylesheet" />
+</svelte:head>
 
-		<div class="animate-bounce">
-			<svg
-				class="mx-auto h-6 w-6 text-gray-500"
-				fill="none"
-				stroke="currentColor"
-				viewBox="0 0 24 24"
-			>
-				<path
-					stroke-linecap="round"
-					stroke-linejoin="round"
-					stroke-width="2"
-					d="M19 14l-7 7m0 0l-7-7m7 7V3"
-				></path>
-			</svg>
-		</div>
-	</div>
-</section>
-
-<section class="bg-white py-20">
-	<div class="mx-auto max-w-6xl px-4">
-		<h2 class="mb-16 text-center text-4xl font-bold text-black">其他雲</h2>
-		<div class="grid grid-cols-1 gap-8 md:grid-cols-3 lg:grid-cols-3">
-			<div class="group">
-				<div
-					class="transform rounded-2xl bg-gray-900 p-8 text-white transition-all duration-300 hover:scale-105 hover:shadow-2xl"
-				>
-					<div class="text-center">
-						<h3 class="mb-2 text-xl font-semibold">黑雲</h3>
+<div class="crt m-10 flex justify-center">
+	<div class="terminal-container pos-relative flex min-h-screen justify-center bg-fixed">
+		<div class="pos-relative w-[95%] max-w-4xl">
+			<div class="terminal-screen">
+				<div class="terminal-header">
+					<div class="flex flex-wrap items-center justify-between gap-2">
+						<span class="neon-text">WHITECLOUD</span>
+						<span class="time-display">{currentTime}</span>
+					</div>
+				</div>
+				<div class="about-section">
+					<div class="about-content">
+						<div class="terminal-box">
+							<div class="terminal-box-header">
+								<span class="file-name">whoami.txt</span>
+								<span class="controls">- □ ×</span>
+							</div>
+							<div class="p-[15px]">
+								<div class="code-line">
+									<span class="prompt">$</span> cat about.txt
+								</div>
+								<div class="output-line">
+									Hi! 我是 WhiteCloud，一個熱愛技術與創作的開發者。
+								</div>
+								<div class="output-line">
+									專注於網頁開發、UI/UX 設計，以及各種有趣的 side projects。
+								</div>
+								<div class="code-line">
+									<span class="prompt">$</span>
+									<span class="cursor-blink">█</span>
+								</div>
+							</div>
+						</div>
+						<p class="text-white">test</p>
 					</div>
 				</div>
 			</div>
 
-			<div class="group">
-				<div
-					class="transform rounded-2xl border border-gray-300 bg-gray-100 p-8 transition-all duration-300 hover:scale-105 hover:border-gray-600 hover:shadow-2xl"
-				>
-					<div class="text-center">
-						<h3 class="mb-2 text-xl font-semibold text-gray-800">星雲</h3>
+			<div class="terminal-screen blog-section">
+				<h2 class="neon-text text-2xl">BLOG</h2>
+				<p class="text-center text-gray-300">Coming Soon...</p>
+			</div>
+
+			<div class="terminal-screen projects-section">
+				<h2 class="neon-text text-2xl">PROJECTS</h2>
+				<div class="flex flex-col gap-4">
+					<div class="project-item">
+						<h3 class="neon-cyan text-lg">Project A</h3>
+						<p class="text-gray-300">A brief description of Project A.</p>
 					</div>
 				</div>
 			</div>
 
-			<div class="group">
-				<div
-					class="transform rounded-2xl bg-gradient-to-br from-gray-200 to-gray-400 p-8 text-gray-800 transition-all duration-300 hover:scale-105 hover:from-gray-800 hover:to-black hover:text-white hover:shadow-2xl"
-				>
-					<div class="text-center">
-						<h3 class="mb-2 text-xl font-semibold">暗雲</h3>
-					</div>
+			<div class="status-bar">
+				<div class="status-item">
+					<span class="neon-green">ONLINE</span> │
+					<span class="neon-yellow">READY</span> │
+					<span class="neon-pink">TERMINAL MODE</span> │
+					<span class="status-info">© 2025 whitecloud</span>
 				</div>
 			</div>
 		</div>
 	</div>
-</section>
-
-<section id="projects" class="bg-gray-100 py-20">
-	<div class="mx-auto max-w-6xl px-4">
-		<h2 class="mb-16 text-center text-4xl font-bold text-black">Project</h2>
-
-		<!-- WIP -->
-		<div class="text-center">
-			<a
-				href="/projects"
-				class="inline-flex transform items-center rounded-2xl border border-black bg-black px-8 py-4 font-semibold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:bg-gray-800 hover:shadow-xl"
-			>
-				查看所有作品
-				<svg class="ml-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-					<path
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						stroke-width="2"
-						d="M17 8l4 4m0 0l-4 4m4-4H3"
-					></path>
-				</svg>
-			</a>
+	<div class="flex min-w-[200px] flex-col space-y-6">
+		<div class="terminal-screen ml-4">
+			<div class="">
+				<h3 class="neon-cyan mb-3 font-bold">Links</h3>
+				<div class="space-y-2">
+					<a
+						href="/blog"
+						class="bg-opacity-30 block rounded bg-black text-sm text-gray-300 transition-all"
+					>
+						<p>Blog</p>
+					</a>
+					<a
+						href="/projects"
+						class="bg-opacity-30 block rounded bg-black text-sm text-gray-300 transition-all"
+					>
+						<p>Projects</p>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div class="terminal-screen ml-4">
+			<div class="">
+				<h3 class="neon-cyan mb-3 font-bold">Friends</h3>
+				<div class="space-y-2"></div>
+			</div>
 		</div>
 	</div>
-</section>
-
-<section class="bg-white py-20">
-	<div class="mx-auto max-w-6xl px-4">
-		<h2 class="mb-16 text-center text-4xl font-bold text-black">興趣愛好</h2>
-		<!-- WIP -->
-	</div>
-</section>
-<footer class="border-t border-gray-800 bg-black py-16 text-center text-white">
-	<p class="text-gray-400">
-		© 2025 CloudOwo. Made with <span class="text-white">❤️</span> and Svelte
-	</p>
-</footer>
+</div>
 
 <style>
-	@keyframes fade-in {
+	@import url('https://fontsapi.zeoseven.com/442/main/result.css');
+	:global(body) {
+		margin: 0;
+		padding: 0;
+		background: #000000;
+		font-family: 'OCR-A BT', 'Maple Mono NF CN', monospace;
+		font-weight: normal;
+		overflow-x: hidden;
+		cursor: crosshair;
+	}
+
+	.terminal-screen {
+		background: #000000;
+		border: 2px solid #00ff96;
+		border-radius: 4px;
+		padding: 20px;
+		box-shadow:
+			0 0 20px rgba(0, 255, 150, 0.5),
+			inset 0 0 30px rgba(0, 255, 150, 0.1);
+		position: relative;
+		overflow: hidden;
+	}
+
+	.terminal-header {
+		border-bottom: 1px solid #00ff96;
+		padding-bottom: 10px;
+		margin-bottom: 20px;
+	}
+
+	.blog-section {
+		margin-top: 30px;
+	}
+
+	.projects-section {
+		margin-top: 30px;
+	}
+
+	.time-display {
+		color: #ff006e;
+		text-shadow: 0 0 10px #ff006e;
+
+		font-size: 14px;
+	}
+
+	.neon-text {
+		color: #00ff96;
+		text-shadow:
+			0 0 5px #00ff96,
+			0 0 10px #00ff96;
+
+		animation: neon-pulse 2s ease-in-out infinite alternate;
+	}
+
+	.neon-cyan {
+		color: #00d9ff;
+		text-shadow:
+			0 0 5px #00d9ff,
+			0 0 10px #00d9ff,
+			0 0 15px #00d9ff;
+	}
+
+	.neon-green {
+		color: #39ff14;
+		text-shadow:
+			0 0 5px #39ff14,
+			0 0 10px #39ff14;
+	}
+
+	.neon-yellow {
+		color: #ffff00;
+		text-shadow:
+			0 0 5px #ffff00,
+			0 0 10px #ffff00;
+	}
+
+	.neon-pink {
+		color: #ff1493;
+		text-shadow:
+			0 0 5px #ff1493,
+			0 0 10px #ff1493;
+	}
+
+	.about-section {
+		margin: 30px 0;
+	}
+
+	.about-content {
+		display: flex;
+		justify-content: center;
+	}
+
+	.terminal-box {
+		background: #111;
+		border: 1px solid #333;
+		border-radius: 5px;
+		max-width: 600px;
+		width: 100%;
+	}
+
+	.terminal-box-header {
+		background: #222;
+		padding: 8px 15px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		border-bottom: 1px solid #333;
+	}
+
+	.file-name {
+		color: #00ff96;
+		text-shadow: 0 0 3px #00ff96;
+		font-size: 12px;
+	}
+
+	.controls {
+		color: #666;
+		font-size: 12px;
+	}
+
+	.code-line {
+		margin: 8px 0;
+		font-size: 13px;
+		color: #00d9ff;
+		text-shadow: 0 0 3px #00d9ff;
+	}
+
+	.output-line {
+		margin: 8px 0;
+		margin-left: 20px;
+		font-size: 13px;
+		color: #ccc;
+		font-family: 'Noto Sans Mono', monospace;
+		font-optical-sizing: auto;
+		font-style: normal;
+		font-variation-settings: 'wdth' 100;
+	}
+
+	.prompt {
+		color: #00ff96;
+		text-shadow: 0 0 3px #00ff96;
+	}
+
+	.cursor-blink {
+		color: #00ff96;
+		text-shadow: 0 0 5px #00ff96;
+		animation: blink-cursor 1s infinite;
+	}
+
+	.status-item {
+		background: rgba(0, 0, 0, 0.3);
+		border: 1px solid #333;
+		border-radius: 4px;
+		padding: 15px;
+		text-align: center;
+	}
+
+	.status-bar {
+		border-top: 1px solid #333;
+		padding-top: 15px;
+		text-align: center;
+		margin-top: 30px;
+	}
+
+	.status-bar .status-item {
+		background: none;
+		border: none;
+		padding: 0;
+		font-size: 12px;
+		color: #666;
+	}
+
+	.status-info {
+		color: #888;
+	}
+
+	@keyframes neon-pulse {
 		from {
-			opacity: 0;
-			transform: translateY(30px);
+			text-shadow:
+				0 0 5px #00ff96,
+				0 0 10px #00ff96,
+				0 0 15px #00ff96,
+				0 0 20px #00ff96;
 		}
 		to {
-			opacity: 1;
-			transform: translateY(0);
+			text-shadow:
+				0 0 2px #00ff96,
+				0 0 5px #00ff96,
+				0 0 8px #00ff96,
+				0 0 12px #00ff96;
 		}
 	}
 
-	.animate-fade-in {
-		animation: fade-in 1s ease-out;
+	@keyframes blink-cursor {
+		0%,
+		50% {
+			opacity: 1;
+		}
+		51%,
+		100% {
+			opacity: 0;
+		}
 	}
 
-	.animate-fade-in-delay {
-		animation: fade-in 1s ease-out 0.3s both;
+	.terminal-container {
+		cursor:
+			url("data:image/svg+xml,%3csvg width='16' height='16' xmlns='http://www.w3.org/2000/svg'%3e%3ctext y='12' style='font: 12px monospace; fill: %2300ff96;'%3e█%3c/text%3e%3c/svg%3e"),
+			crosshair;
 	}
 
-	.animate-fade-in-delay-2 {
-		animation: fade-in 1s ease-out 0.6s both;
+	.crt::after {
+		content: ' ';
+		display: block;
+		position: absolute;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		right: 0;
+		background: rgba(18, 16, 16, 0.1);
+		opacity: 0;
+		z-index: 2;
+		pointer-events: none;
+		animation: flicker 0.15s infinite;
+	}
+	.crt::before {
+		content: ' ';
+		display: block;
+		position: absolute;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		right: 0;
+		background:
+			linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
+			linear-gradient(
+				90deg,
+				rgba(255, 0, 0, 0.06),
+				rgba(0, 255, 0, 0.02),
+				rgba(0, 0, 255, 0.06)
+			);
+		z-index: 2;
+		background-size:
+			100% 2px,
+			3px 100%;
+		pointer-events: none;
+	}
+	.crt {
+		animation: textShadow 1.6s infinite;
+	}
+
+	::selection {
+		background: rgba(0, 255, 150, 0.3);
+		color: #ffffff;
 	}
 </style>

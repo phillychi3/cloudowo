@@ -2,16 +2,166 @@
 	import { page } from '$app/state';
 </script>
 
-<div>
-	{#if page?.error}
-		<div class="mt-4 p-4">
-			{#if page?.status}
-				<p>Page status: {page?.status}</p>
-				<img src="https://http.cat/{page?.status}" alt="HTTP status code" />
-			{/if}
-			{#if page?.error?.message}
-				<p>Error message: {page?.error?.message}</p>
-			{/if}
+<div class="crt error-page min-h-screen bg-black text-white">
+	{#if page?.status}
+		<div class="http-cat-container mt-6">
+			<div class="image-frame">
+				<img
+					src="https://http.cat/{page.status}"
+					alt="HTTP {page.status} status"
+					class="http-cat-image"
+				/>
+				<div class="image-caption">
+					<span class="neon-cyan">HTTP/{page.status}</span>
+				</div>
+			</div>
 		</div>
 	{/if}
 </div>
+
+<style>
+	:global(body) {
+		margin: 0;
+		padding: 0;
+		background: #000000;
+		font-family: 'Courier New', 'Monaco', 'Menlo', monospace;
+		overflow-x: hidden;
+	}
+
+	.error-page {
+		cursor: crosshair;
+	}
+
+	.neon-cyan {
+		color: #00d9ff;
+		text-shadow:
+			0 0 5px #00d9ff,
+			0 0 10px #00d9ff;
+	}
+
+	.http-cat-container {
+		display: flex;
+		justify-content: center;
+		margin: 20px 0;
+	}
+
+	.image-frame {
+		border: 2px solid #333;
+		border-radius: 8px;
+		padding: 10px;
+		background: #111;
+		text-align: center;
+	}
+
+	.http-cat-image {
+		max-width: 600px;
+		width: 100%;
+		height: auto;
+		border-radius: 4px;
+		filter: sepia(20%) hue-rotate(300deg) saturate(80%);
+	}
+
+	.image-caption {
+		margin-top: 10px;
+		font-size: 12px;
+	}
+
+	.crt::after {
+		content: ' ';
+		display: block;
+		position: absolute;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		right: 0;
+		background: rgba(18, 16, 16, 0.1);
+		opacity: 0;
+		z-index: 2;
+		pointer-events: none;
+		animation: flicker 0.15s infinite;
+	}
+
+	.crt::before {
+		content: ' ';
+		display: block;
+		position: absolute;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		right: 0;
+		background:
+			linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
+			linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+		z-index: 2;
+		background-size:
+			100% 2px,
+			3px 100%;
+		pointer-events: none;
+	}
+
+	@keyframes flicker {
+		0% {
+			opacity: 0.27861;
+		}
+		5% {
+			opacity: 0.34769;
+		}
+		10% {
+			opacity: 0.23604;
+		}
+		15% {
+			opacity: 0.90626;
+		}
+		20% {
+			opacity: 0.18128;
+		}
+		25% {
+			opacity: 0.83891;
+		}
+		30% {
+			opacity: 0.65583;
+		}
+		35% {
+			opacity: 0.67807;
+		}
+		40% {
+			opacity: 0.26559;
+		}
+		45% {
+			opacity: 0.84693;
+		}
+		50% {
+			opacity: 0.96019;
+		}
+		55% {
+			opacity: 0.08594;
+		}
+		60% {
+			opacity: 0.20313;
+		}
+		65% {
+			opacity: 0.71988;
+		}
+		70% {
+			opacity: 0.53455;
+		}
+		75% {
+			opacity: 0.37288;
+		}
+		80% {
+			opacity: 0.71428;
+		}
+		85% {
+			opacity: 0.70419;
+		}
+		90% {
+			opacity: 0.7003;
+		}
+		95% {
+			opacity: 0.36108;
+		}
+		100% {
+			opacity: 0.24387;
+		}
+	}
+</style>
