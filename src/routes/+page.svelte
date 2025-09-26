@@ -2,6 +2,35 @@
 	import { onMount } from 'svelte';
 
 	let currentTime = '';
+	type Item = {
+		title: string;
+		link: string;
+		pubDate?: string;
+		contentSnippet?: string;
+	};
+	let feedItems: Item[] = [];
+
+	async function fetchRSSFeed() {
+		try {
+			const parser = new RSSParser();
+			const feed = await parser.parseURL('https://blog.cloudowo.com/atom');
+			console.log(feed);
+			feedItems = feed.items.slice(0, 5).map((item) => ({
+				title: item.title || 'Untitled',
+				link: item.link || '#',
+				pubDate: item.pubDate || ''
+			}));
+		} catch (err) {
+			console.error('Error fetching RSS feed:', err);
+			feedItems = [
+				{
+					title: 'Unable to load blog posts',
+					link: 'https://blog.cloudowo.com',
+					pubDate: ''
+				}
+			];
+		}
+	}
 
 	onMount(() => {
 		function updateTime() {
@@ -16,6 +45,7 @@
 
 		updateTime();
 		const timeInterval = setInterval(updateTime, 1000);
+		fetchRSSFeed();
 
 		return () => {
 			clearInterval(timeInterval);
@@ -31,6 +61,7 @@
 		rel="stylesheet"
 	/>
 	<link href="https://fonts.cdnfonts.com/css/ocr-a-bt" rel="stylesheet" />
+	<script src="https://cdn.jsdelivr.net/npm/rss-parser@3.13.0/dist/rss-parser.min.js"></script>
 </svelte:head>
 
 <div class="crt m-10 flex justify-center">
@@ -54,9 +85,7 @@
 								<div class="code-line">
 									<span class="prompt">$</span> cat about.txt
 								</div>
-								<div class="output-line">
-									Hi! 我是 WhiteCloud，一個熱愛技術與創作的開發者。
-								</div>
+								<div class="output-line">Hi! 我是 WhiteCloud，一個熱愛技術與創作的開發者。</div>
 								<div class="output-line">
 									專注於網頁開發、UI/UX 設計，以及各種有趣的 side projects。
 								</div>
@@ -73,7 +102,47 @@
 
 			<div class="terminal-screen blog-section">
 				<h2 class="neon-text text-2xl">BLOG</h2>
-				<p class="text-center text-gray-300">Coming Soon...</p>
+				<div class="blog-content">
+					{#if feedItems.length === 0}
+						<div class="loading-container">
+							<div class="code-line">
+								<span class="prompt">$</span>
+								<span class="loading-text">Loading blog posts</span>
+								<span class="cursor-blink">█</span>
+							</div>
+						</div>
+					{:else}
+						<div class="blog-list">
+							{#each feedItems as item, index}
+								<div class="blog-item">
+									<div class="blog-item-header">
+										<span class="blog-number neon-cyan">[{String(index + 1).padStart(2, '0')}]</span
+										>
+										<a href={item.link} target="_blank" class="blog-title">
+											{item.title}
+										</a>
+									</div>
+									{#if item.contentSnippet}
+										<div class="blog-snippet">{item.contentSnippet}</div>
+									{/if}
+									{#if item.pubDate}
+										<div class="blog-date">
+											{new Date(item.pubDate).toLocaleDateString('zh-TW')}
+										</div>
+									{/if}
+								</div>
+							{/each}
+						</div>
+						<div class="blog-footer">
+							<div class="code-line">
+								<span class="prompt">$</span>
+								<a href="https://blog.cloudowo.com" target="_blank" class="neon-cyan">
+									cd blog.cloudowo.com
+								</a>
+							</div>
+						</div>
+					{/if}
+				</div>
 			</div>
 
 			<div class="terminal-screen projects-section">
@@ -301,6 +370,93 @@
 		color: #888;
 	}
 
+	.blog-content {
+		margin-top: 20px;
+	}
+
+	.loading-container {
+		display: flex;
+		justify-content: center;
+		padding: 20px;
+	}
+
+	.loading-text {
+		color: #00d9ff;
+		text-shadow: 0 0 3px #00d9ff;
+	}
+
+	.blog-list {
+		display: flex;
+		flex-direction: column;
+		gap: 15px;
+	}
+
+	.blog-item {
+		background: #111;
+		border: 1px solid #333;
+		border-radius: 5px;
+		padding: 15px;
+		transition: all 0.3s ease;
+	}
+
+	.blog-item:hover {
+		border-color: #00ff96;
+		box-shadow: 0 0 10px rgba(0, 255, 150, 0.2);
+	}
+
+	.blog-item-header {
+		display: flex;
+		align-items: flex-start;
+		gap: 10px;
+		margin-bottom: 8px;
+	}
+
+	.blog-number {
+		font-size: 12px;
+		flex-shrink: 0;
+	}
+
+	.blog-title {
+		color: #00ff96;
+		text-decoration: none;
+		font-size: 14px;
+		line-height: 1.4;
+		transition: all 0.3s ease;
+	}
+
+	.blog-title:hover {
+		text-shadow:
+			0 0 5px #00ff96,
+			0 0 10px #00ff96;
+		color: #39ff14;
+	}
+
+	.blog-snippet {
+		color: #ccc;
+		font-size: 12px;
+		line-height: 1.4;
+		margin-left: 30px;
+		margin-bottom: 5px;
+		font-family: 'Noto Sans Mono', monospace;
+	}
+
+	.blog-date {
+		color: #666;
+		font-size: 11px;
+		text-align: right;
+	}
+
+	.blog-footer {
+		margin-top: 20px;
+		padding-top: 15px;
+		border-top: 1px solid #333;
+	}
+
+	.blog-footer .neon-cyan {
+		text-decoration: none;
+		transition: all 0.3s ease;
+	}
+
 	@keyframes neon-pulse {
 		from {
 			text-shadow:
@@ -359,12 +515,7 @@
 		right: 0;
 		background:
 			linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
-			linear-gradient(
-				90deg,
-				rgba(255, 0, 0, 0.06),
-				rgba(0, 255, 0, 0.02),
-				rgba(0, 0, 255, 0.06)
-			);
+			linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
 		z-index: 2;
 		background-size:
 			100% 2px,
