@@ -95,7 +95,11 @@
 								</div>
 							</div>
 						</div>
-						<p class="text-white">test</p>
+						<img
+							src="https://avatars.githubusercontent.com/u/55632143?v=4"
+							alt="Avatar"
+							class="ml-6 h-30 w-30 border-2 border-green-400 object-cover"
+						/>
 					</div>
 				</div>
 			</div>
@@ -149,8 +153,40 @@
 				<h2 class="neon-text text-2xl">PROJECTS</h2>
 				<div class="flex flex-col gap-4">
 					<div class="project-item">
-						<h3 class="neon-cyan text-lg">Project A</h3>
-						<p class="text-gray-300">A brief description of Project A.</p>
+						<a
+							class="neon-cyan text-lg hover:underline"
+							on:click={() => window.open('https://nothing.cloudowo.com', '_blank')}
+						>
+							Nothing Bot
+						</a>
+						<p class="text-gray-300">一個多功能 Discord 機器人，提供音樂播放、管理工具等功能。</p>
+					</div>
+					<div class="project-item">
+						<a
+							class="neon-cyan text-lg hover:underline"
+							on:click={() => window.open('https://rtpic.cloudowo.com', '_blank')}
+						>
+							RTPIC
+						</a>
+						<p class="text-gray-300">一個自用的反圖系統</p>
+					</div>
+					<div class="project-item">
+						<a
+							class="neon-cyan text-lg hover:underline"
+							on:click={() => window.open('https://mygo.雲.tw', '_blank')}
+						>
+							MYGO
+						</a>
+						<p class="text-gray-300">mygo 圖片網</p>
+					</div>
+					<div class="project-item">
+						<a
+							class="neon-cyan text-lg hover:underline"
+							on:click={() => window.open('https://雲.tw', '_blank')}
+						>
+							cloudinit
+						</a>
+						<p class="text-gray-300">起始頁</p>
 					</div>
 				</div>
 			</div>
@@ -171,8 +207,9 @@
 				<h3 class="neon-cyan mb-3 font-bold">Links</h3>
 				<div class="space-y-2">
 					<a
-						href="/blog"
+						href="https://blog.cloudowo.com"
 						class="bg-opacity-30 block rounded bg-black text-sm text-gray-300 transition-all"
+						target="_blank"
 					>
 						<p>Blog</p>
 					</a>
@@ -494,37 +531,105 @@
 	.crt::after {
 		content: ' ';
 		display: block;
-		position: absolute;
+		position: fixed;
 		top: 0;
 		left: 0;
-		bottom: 0;
-		right: 0;
+		width: 100vw;
+		height: 100vh;
 		background: rgba(18, 16, 16, 0.1);
 		opacity: 0;
-		z-index: 2;
+		z-index: 9999;
 		pointer-events: none;
 		animation: flicker 0.15s infinite;
 	}
 	.crt::before {
 		content: ' ';
 		display: block;
-		position: absolute;
+		position: fixed;
 		top: 0;
 		left: 0;
-		bottom: 0;
-		right: 0;
+		width: 100vw;
+		height: 100vh;
 		background:
 			linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
 			linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
-		z-index: 2;
+		z-index: 9998;
 		background-size:
 			100% 2px,
 			3px 100%;
 		pointer-events: none;
 	}
 	.crt {
-		animation: textShadow 1.6s infinite;
+
 	}
+
+	@keyframes flicker {
+		0% {
+			opacity: 0.27861;
+		}
+		5% {
+			opacity: 0.34769;
+		}
+		10% {
+			opacity: 0.23604;
+		}
+		15% {
+			opacity: 0.90626;
+		}
+		20% {
+			opacity: 0.18128;
+		}
+		25% {
+			opacity: 0.83891;
+		}
+		30% {
+			opacity: 0.65583;
+		}
+		35% {
+			opacity: 0.67807;
+		}
+		40% {
+			opacity: 0.26559;
+		}
+		45% {
+			opacity: 0.84693;
+		}
+		50% {
+			opacity: 0.96019;
+		}
+		55% {
+			opacity: 0.08594;
+		}
+		60% {
+			opacity: 0.20313;
+		}
+		65% {
+			opacity: 0.71988;
+		}
+		70% {
+			opacity: 0.53455;
+		}
+		75% {
+			opacity: 0.37288;
+		}
+		80% {
+			opacity: 0.71428;
+		}
+		85% {
+			opacity: 0.70419;
+		}
+		90% {
+			opacity: 0.7003;
+		}
+		95% {
+			opacity: 0.36108;
+		}
+		100% {
+			opacity: 0.24387;
+		}
+	}
+
+
 
 	::selection {
 		background: rgba(0, 255, 150, 0.3);
