@@ -54,6 +54,10 @@
 </script>
 
 <svelte:head>
+	<meta
+		name="viewport"
+		content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+	/>
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
 	<link
@@ -64,18 +68,18 @@
 	<script src="https://cdn.jsdelivr.net/npm/rss-parser@3.13.0/dist/rss-parser.min.js"></script>
 </svelte:head>
 
-<div class="crt m-10 flex justify-center">
+<div class="crt m-2 flex flex-col justify-center md:m-10 lg:flex-row">
 	<div class="terminal-container pos-relative flex min-h-screen justify-center bg-fixed">
-		<div class="pos-relative w-[95%] max-w-4xl">
+		<div class="pos-relative w-full max-w-4xl px-2 lg:w-[95%] lg:px-0">
 			<div class="terminal-screen">
 				<div class="terminal-header">
 					<div class="flex flex-wrap items-center justify-between gap-2">
-						<span class="neon-text">WHITECLOUD</span>
-						<span class="time-display">{currentTime}</span>
+						<span class="neon-text text-sm md:text-base">WHITECLOUD</span>
+						<span class="time-display text-xs md:text-sm">{currentTime}</span>
 					</div>
 				</div>
 				<div class="about-section">
-					<div class="about-content">
+					<div class="about-content flex-col md:flex-row">
 						<div class="terminal-box">
 							<div class="terminal-box-header">
 								<span class="file-name">whoami.txt</span>
@@ -98,14 +102,14 @@
 						<img
 							src="https://avatars.githubusercontent.com/u/55632143?v=4"
 							alt="Avatar"
-							class="ml-6 h-30 w-30 border-2 border-green-400 object-cover"
+							class="mx-auto mt-4 h-24 w-24 border-2 border-green-400 object-cover md:mx-0 md:mt-0 md:ml-6 md:h-30 md:w-30"
 						/>
 					</div>
 				</div>
 			</div>
 
 			<div class="terminal-screen blog-section">
-				<h2 class="neon-text text-2xl">BLOG</h2>
+				<h2 class="neon-text text-xl md:text-2xl">BLOG</h2>
 				<div class="blog-content">
 					{#if feedItems.length === 0}
 						<div class="loading-container">
@@ -150,43 +154,45 @@
 			</div>
 
 			<div class="terminal-screen projects-section">
-				<h2 class="neon-text text-2xl">PROJECTS</h2>
+				<h2 class="neon-text text-xl md:text-2xl">PROJECTS</h2>
 				<div class="flex flex-col gap-4">
 					<div class="project-item">
 						<a
-							class="neon-cyan text-lg hover:underline"
+							class="neon-cyan cursor-pointer text-base hover:underline md:text-lg"
 							on:click={() => window.open('https://nothing.cloudowo.com', '_blank')}
 						>
 							Nothing Bot
 						</a>
-						<p class="text-gray-300">一個多功能 Discord 機器人，提供音樂播放、管理工具等功能。</p>
+						<p class="text-sm text-gray-300 md:text-base">
+							一個多功能 Discord 機器人，提供音樂播放、管理工具等功能。
+						</p>
 					</div>
 					<div class="project-item">
 						<a
-							class="neon-cyan text-lg hover:underline"
+							class="neon-cyan cursor-pointer text-base hover:underline md:text-lg"
 							on:click={() => window.open('https://rtpic.cloudowo.com', '_blank')}
 						>
 							RTPIC
 						</a>
-						<p class="text-gray-300">一個自用的反圖系統</p>
+						<p class="text-sm text-gray-300 md:text-base">一個自用的反圖系統</p>
 					</div>
 					<div class="project-item">
 						<a
-							class="neon-cyan text-lg hover:underline"
+							class="neon-cyan cursor-pointer text-base hover:underline md:text-lg"
 							on:click={() => window.open('https://mygo.雲.tw', '_blank')}
 						>
 							MYGO
 						</a>
-						<p class="text-gray-300">mygo 圖片網</p>
+						<p class="text-sm text-gray-300 md:text-base">mygo 圖片網</p>
 					</div>
 					<div class="project-item">
 						<a
-							class="neon-cyan text-lg hover:underline"
+							class="neon-cyan cursor-pointer text-base hover:underline md:text-lg"
 							on:click={() => window.open('https://雲.tw', '_blank')}
 						>
 							cloudinit
 						</a>
-						<p class="text-gray-300">起始頁</p>
+						<p class="text-sm text-gray-300 md:text-base">起始頁</p>
 					</div>
 				</div>
 			</div>
@@ -201,31 +207,32 @@
 			</div>
 		</div>
 	</div>
-	<div class="flex min-w-[200px] flex-col space-y-6">
-		<div class="terminal-screen ml-4">
+	<div class="mt-6 flex w-full flex-col space-y-6 lg:mt-0 lg:w-auto lg:min-w-[200px]">
+		<div class="terminal-screen ml-0 lg:ml-4">
 			<div class="">
-				<h3 class="neon-cyan mb-3 font-bold">Links</h3>
+				<h3 class="neon-cyan mb-3 text-sm font-bold md:text-base">Links</h3>
 				<div class="space-y-2">
 					<a
 						href="https://blog.cloudowo.com"
-						class="bg-opacity-30 block rounded bg-black text-sm text-gray-300 transition-all"
+						class="bg-opacity-30 hover:bg-opacity-50 block rounded bg-black p-2 text-sm text-gray-300 transition-all"
 						target="_blank"
 					>
 						<p>Blog</p>
 					</a>
 					<a
 						href="/projects"
-						class="bg-opacity-30 block rounded bg-black text-sm text-gray-300 transition-all"
+						class="bg-opacity-30 hover:bg-opacity-50 block rounded bg-black p-2 text-sm text-gray-300 transition-all"
 					>
 						<p>Projects</p>
 					</a>
 				</div>
 			</div>
 		</div>
-		<div class="terminal-screen ml-4">
+		<div class="terminal-screen ml-0 lg:ml-4">
 			<div class="">
-				<h3 class="neon-cyan mb-3 font-bold">Friends</h3>
-				<div class="space-y-2"></div>
+				<h3 class="neon-cyan mb-3 text-sm font-bold md:text-base">Friends</h3>
+				<div class="space-y-2">
+				</div>
 			</div>
 		</div>
 	</div>
@@ -247,12 +254,18 @@
 		background: #000000;
 		border: 2px solid #00ff96;
 		border-radius: 4px;
-		padding: 20px;
+		padding: 15px;
 		box-shadow:
 			0 0 20px rgba(0, 255, 150, 0.5),
 			inset 0 0 30px rgba(0, 255, 150, 0.1);
 		position: relative;
 		overflow: hidden;
+	}
+
+	@media (min-width: 768px) {
+		.terminal-screen {
+			padding: 20px;
+		}
 	}
 
 	.terminal-header {
@@ -321,6 +334,16 @@
 	.about-content {
 		display: flex;
 		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+		gap: 16px;
+	}
+
+	@media (min-width: 768px) {
+		.about-content {
+			flex-direction: row;
+			gap: 24px;
+		}
 	}
 
 	.terminal-box {
@@ -333,11 +356,17 @@
 
 	.terminal-box-header {
 		background: #222;
-		padding: 8px 15px;
+		padding: 6px 12px;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
 		border-bottom: 1px solid #333;
+	}
+
+	@media (min-width: 768px) {
+		.terminal-box-header {
+			padding: 8px 15px;
+		}
 	}
 
 	.file-name {
@@ -444,21 +473,41 @@
 	.blog-item-header {
 		display: flex;
 		align-items: flex-start;
-		gap: 10px;
+		gap: 8px;
 		margin-bottom: 8px;
+		flex-direction: column;
+	}
+
+	@media (min-width: 640px) {
+		.blog-item-header {
+			flex-direction: row;
+			gap: 10px;
+		}
 	}
 
 	.blog-number {
-		font-size: 12px;
+		font-size: 11px;
 		flex-shrink: 0;
+	}
+
+	@media (min-width: 768px) {
+		.blog-number {
+			font-size: 12px;
+		}
 	}
 
 	.blog-title {
 		color: #00ff96;
 		text-decoration: none;
-		font-size: 14px;
+		font-size: 13px;
 		line-height: 1.4;
 		transition: all 0.3s ease;
+	}
+
+	@media (min-width: 768px) {
+		.blog-title {
+			font-size: 14px;
+		}
 	}
 
 	.blog-title:hover {
@@ -470,11 +519,18 @@
 
 	.blog-snippet {
 		color: #ccc;
-		font-size: 12px;
+		font-size: 11px;
 		line-height: 1.4;
-		margin-left: 30px;
+		margin-left: 0;
 		margin-bottom: 5px;
 		font-family: 'Noto Sans Mono', monospace;
+	}
+
+	@media (min-width: 640px) {
+		.blog-snippet {
+			margin-left: 30px;
+			font-size: 12px;
+		}
 	}
 
 	.blog-date {
@@ -560,7 +616,7 @@
 		pointer-events: none;
 	}
 	.crt {
-
+		position: relative;
 	}
 
 	@keyframes flicker {
@@ -629,10 +685,100 @@
 		}
 	}
 
-
-
 	::selection {
 		background: rgba(0, 255, 150, 0.3);
 		color: #ffffff;
+	}
+
+	/* 手機專用樣式 */
+	@media (max-width: 767px) {
+		.neon-text {
+			font-size: 14px;
+		}
+
+		.time-display {
+			font-size: 12px;
+		}
+
+		.terminal-header {
+			padding-bottom: 8px;
+			margin-bottom: 15px;
+		}
+
+		.blog-section,
+		.projects-section {
+			margin-top: 20px;
+		}
+
+		.code-line {
+			font-size: 12px;
+		}
+
+		.output-line {
+			font-size: 12px;
+			margin-left: 15px;
+		}
+
+		.status-bar {
+			margin-top: 20px;
+		}
+
+		.status-bar .status-item {
+			font-size: 10px;
+		}
+
+		/* 減少 CRT 效果在手機上的強度 */
+		.crt::before {
+			opacity: 0.3;
+		}
+
+		.crt::after {
+			opacity: 0.1;
+		}
+
+		/* 調整手機上的字體大小 */
+		.file-name {
+			font-size: 11px;
+		}
+
+		.controls {
+			font-size: 11px;
+		}
+
+		/* 手機上的觸摸友好設計 */
+		.blog-item,
+		.project-item {
+			padding: 12px;
+		}
+
+		.blog-title,
+		.neon-cyan {
+			touch-action: manipulation;
+		}
+
+		/* 確保手機上的可點擊區域足夠大 */
+		a {
+			min-height: 44px;
+			display: flex;
+			align-items: center;
+		}
+	}
+
+	/* 平板樣式 */
+	@media (min-width: 768px) and (max-width: 1023px) {
+		.terminal-screen {
+			padding: 18px;
+		}
+
+		.about-content {
+			gap: 20px;
+		}
+	}
+
+	/* 大螢幕優化 */
+	@media (min-width: 1024px) {
+		.terminal-container {
+			padding: 0 20px;
+		}
 	}
 </style>
