@@ -51,6 +51,49 @@
 			clearInterval(timeInterval);
 		};
 	});
+
+	const Projects = [
+		{
+			name: 'Nothing Bot',
+			description: '一個多功能 Discord 機器人，提供音樂播放、管理工具等功能。',
+			url: 'https://nothing.cloudowo.com'
+		},
+		{
+			name: 'RTPIC',
+			description: '一個自用的返圖系統',
+			url: 'https://rtpic.cloudowo.com'
+		},
+		{
+			name: 'MYGO',
+			description: 'mygo 圖片網',
+			url: 'https://mygo.雲.tw'
+		},
+		{
+			name: 'cloudinit',
+			description: '起始頁',
+			url: 'https://雲.tw'
+		},
+		{
+			name: 'DDHelper',
+			description: 'Vtuber 直播資訊網站',
+			url: 'https://ddhelper.cloudowo.com'
+		}
+	];
+
+	const Friends = [
+		{
+			name: '泉野咲',
+			url: 'https://izumino.cat/'
+		},
+		{
+			name: 'Plasmon222',
+			url: 'https://blog.loveak.top/'
+		},
+		{
+			name: 'IceWingsOvO',
+			url: 'https://fringe-fuschia-93b.notion.site/IceWings-World-2d4862315252419ca84a69acd893d70b'
+		}
+	];
 </script>
 
 <svelte:head>
@@ -156,44 +199,20 @@
 			<div class="terminal-screen projects-section">
 				<h2 class="neon-text text-xl md:text-2xl">PROJECTS</h2>
 				<div class="flex flex-col gap-4">
-					<div class="project-item">
-						<a
-							class="neon-cyan cursor-pointer text-base hover:underline md:text-lg"
-							on:click={() => window.open('https://nothing.cloudowo.com', '_blank')}
-						>
-							Nothing Bot
-						</a>
-						<p class="text-sm text-gray-300 md:text-base">
-							一個多功能 Discord 機器人，提供音樂播放、管理工具等功能。
-						</p>
-					</div>
-					<div class="project-item">
-						<a
-							class="neon-cyan cursor-pointer text-base hover:underline md:text-lg"
-							on:click={() => window.open('https://rtpic.cloudowo.com', '_blank')}
-						>
-							RTPIC
-						</a>
-						<p class="text-sm text-gray-300 md:text-base">一個自用的反圖系統</p>
-					</div>
-					<div class="project-item">
-						<a
-							class="neon-cyan cursor-pointer text-base hover:underline md:text-lg"
-							on:click={() => window.open('https://mygo.雲.tw', '_blank')}
-						>
-							MYGO
-						</a>
-						<p class="text-sm text-gray-300 md:text-base">mygo 圖片網</p>
-					</div>
-					<div class="project-item">
-						<a
-							class="neon-cyan cursor-pointer text-base hover:underline md:text-lg"
-							on:click={() => window.open('https://雲.tw', '_blank')}
-						>
-							cloudinit
-						</a>
-						<p class="text-sm text-gray-300 md:text-base">起始頁</p>
-					</div>
+					{#each Projects as project}
+						<div class="project-item">
+							<a
+								class="neon-cyan cursor-pointer text-base hover:underline md:text-lg"
+								href={project.url}
+								target="_blank"
+							>
+								{project.name}
+							</a>
+							<p class="text-sm text-gray-300 md:text-base">
+								{project.description}
+							</p>
+						</div>
+					{/each}
 				</div>
 			</div>
 
@@ -232,6 +251,15 @@
 			<div class="">
 				<h3 class="neon-cyan mb-3 text-sm font-bold md:text-base">Friends</h3>
 				<div class="space-y-2">
+					{#each Friends as friend}
+						<a
+							href={friend.url}
+							class="bg-opacity-30 hover:bg-opacity-50 block rounded bg-black text-sm text-gray-300 transition-all"
+							target="_blank"
+						>
+							<p>{friend.name}</p>
+						</a>
+					{/each}
 				</div>
 			</div>
 		</div>
