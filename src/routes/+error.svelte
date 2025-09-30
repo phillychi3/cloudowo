@@ -20,14 +20,6 @@
 </div>
 
 <style>
-	:global(body) {
-		margin: 0;
-		padding: 0;
-		background: #000000;
-		font-family: 'Courier New', 'Monaco', 'Menlo', monospace;
-		overflow-x: hidden;
-	}
-
 	.error-page {
 		cursor: crosshair;
 	}
