@@ -15,7 +15,7 @@
 			const parser = new RSSParser();
 			const feed = await parser.parseURL('https://blog.cloudowo.com/atom');
 			console.log(feed);
-			feedItems = feed.items.slice(0, 5).map((item) => ({
+			feedItems = feed.items.slice(0, 5).map((item: { title: any; link: any; pubDate: any }) => ({
 				title: item.title || 'Untitled',
 				link: item.link || '#',
 				pubDate: item.pubDate || ''
@@ -718,7 +718,6 @@
 		color: #ffffff;
 	}
 
-	/* 手機專用樣式 */
 	@media (max-width: 767px) {
 		.neon-text {
 			font-size: 14px;
@@ -755,7 +754,6 @@
 			font-size: 10px;
 		}
 
-		/* 減少 CRT 效果在手機上的強度 */
 		.crt::before {
 			opacity: 0.3;
 		}
@@ -764,7 +762,6 @@
 			opacity: 0.1;
 		}
 
-		/* 調整手機上的字體大小 */
 		.file-name {
 			font-size: 11px;
 		}
@@ -773,7 +770,6 @@
 			font-size: 11px;
 		}
 
-		/* 手機上的觸摸友好設計 */
 		.blog-item,
 		.project-item {
 			padding: 12px;
@@ -784,7 +780,6 @@
 			touch-action: manipulation;
 		}
 
-		/* 確保手機上的可點擊區域足夠大 */
 		a {
 			min-height: 44px;
 			display: flex;
@@ -792,7 +787,6 @@
 		}
 	}
 
-	/* 平板樣式 */
 	@media (min-width: 768px) and (max-width: 1023px) {
 		.terminal-screen {
 			padding: 18px;
@@ -803,7 +797,6 @@
 		}
 	}
 
-	/* 大螢幕優化 */
 	@media (min-width: 1024px) {
 		.terminal-container {
 			padding: 0 20px;
