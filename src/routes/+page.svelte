@@ -94,9 +94,22 @@
 			url: 'https://fringe-fuschia-93b.notion.site/IceWings-World-2d4862315252419ca84a69acd893d70b'
 		}
 	];
+	const title = '白雲小鎮';
+	const description = '我們要好好活在今天';
+	const url = 'https://cloudowo.com';
 </script>
 
 <svelte:head>
+	<!-- Life is a beautiful death -->
+	<title>{title}</title>
+	<meta charset="UTF-8" />
+	<meta name="description" content={title} />
+	<meta name="og:title" content={title} />
+	<meta name="og:description" content={description} />
+	<meta name="og:type" content="website" />
+	<meta name="og:url" content={url} />
+	<meta name="twitter:title" content={title} />
+	<meta name="twitter:description" content={description} />
 	<meta
 		name="viewport"
 		content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
