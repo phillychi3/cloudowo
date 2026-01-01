@@ -13,7 +13,7 @@
 	async function fetchRSSFeed() {
 		try {
 			const parser = new RSSParser();
-			const feed = await parser.parseURL('https://blog.cloudowo.com/atom');
+			const feed = await parser.parseURL('https://blog.cloudowo.com/rss.xml');
 			console.log(feed);
 			feedItems = feed.items.slice(0, 5).map((item: { title: any; link: any; pubDate: any }) => ({
 				title: item.title || 'Untitled',
