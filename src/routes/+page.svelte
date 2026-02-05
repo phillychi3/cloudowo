@@ -94,6 +94,18 @@
 			url: 'https://fringe-fuschia-93b.notion.site/IceWings-World-2d4862315252419ca84a69acd893d70b'
 		}
 	];
+
+	const Banners = [
+		{
+			image: 'https://blob.gifcities.org/gifcities/AIB6HE2TXRVNV4FY3KKMW5HZQQZK2OXG.gif',
+			link: '#'
+		},
+		{
+			image: 'https://yachiyo.pages.dev/images/ja/banner_jp.gif',
+			link: 'https://yachiyo.pages.dev/#/ja'
+		}
+	];
+
 	const title = '白雲小鎮';
 	const description = '我們要好好活在今天';
 	const url = 'https://cloudowo.com';
@@ -271,6 +283,17 @@
 							target="_blank"
 						>
 							<p>{friend.name}</p>
+						</a>
+					{/each}
+				</div>
+			</div>
+		</div>
+		<div class="banner-container ml-0 lg:ml-4">
+			<div class="banner-scroll">
+				<div class="banner-track">
+					{#each [...Banners] as banner}
+						<a href={banner.link} target="_blank" rel="noopener noreferrer" class="banner-item">
+							<img src={banner.image} alt="Banner" />
 						</a>
 					{/each}
 				</div>
@@ -813,6 +836,47 @@
 	@media (min-width: 1024px) {
 		.terminal-container {
 			padding: 0 20px;
+		}
+	}
+
+	/* Banner 廣告樣式 */
+	.banner-container {
+		margin-top: 1.5rem;
+	}
+
+	.banner-scroll {
+		overflow: hidden;
+		width: 100%;
+	}
+
+	.banner-track {
+		display: flex;
+		gap: 16px;
+		animation: banner-scroll 10s linear infinite;
+		width: max-content;
+	}
+
+	.banner-track:hover {
+		animation-play-state: paused;
+	}
+
+	.banner-item {
+		flex-shrink: 0;
+		display: block;
+	}
+
+	.banner-item img {
+		height: 31px;
+		width: auto;
+		display: block;
+	}
+
+	@keyframes banner-scroll {
+		0% {
+			transform: translateX(0);
+		}
+		100% {
+			transform: translateX(-100%);
 		}
 	}
 </style>
