@@ -6,36 +6,7 @@
 	let { data, children }: LayoutProps = $props();
 
 	let isSubRoute = $derived(page.route.id !== '/projects');
-	let projects = [
-		{
-			name: 'Lithium Player',
-			description: 'A lightweight music player built with Svelte.',
-			repository: 'https://github.com/cl0udlab/Lithium-player',
-			icon: 'mdi:music-note',
-			slug: 'LithiumPlayer'
-		},
-		{
-			name: 'Yet Another Server Status',
-			description: 'Yet Another Server Status',
-			repository: 'https://github.com/cl0udlab/YASS',
-			icon: 'mdi:chart-line',
-			slug: 'YASS'
-		},
-		{
-			name: 'AnyKnowledge',
-			description: 'Your personal AI 「KEEP」, support docx, pdf, audio, video...',
-			repository: 'https://github.com/waifu-lab/anyknowledge',
-			icon: 'mdi:brain',
-			slug: 'anyknowledge'
-		},
-		{
-			name: 'rt-picture-system',
-			description: '返圖系統',
-			repository: 'https://github.com/phillychi3/rt-picture-system',
-			icon: 'mdi:image-multiple',
-			slug: 'rtpic'
-		}
-	];
+	let projects = $derived(data.projects);
 
 	let selectedProject = $state(0);
 
@@ -91,7 +62,7 @@
 <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
 <!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
 <div
-	class="flex min-h-screen {isSubRoute
+	class="flex h-screen {isSubRoute
 		? 'flex-row'
 		: 'flex-col'} justify-center overflow-hidden bg-black font-mono text-green-400"
 	onkeydown={handleKeydown}
@@ -99,25 +70,24 @@
 	role="application"
 >
 	<div
-		class="crt terminal-container project-manager relative flex min-h-screen justify-center bg-fixed p-4 {isSubRoute
+		class="crt terminal-container project-manager relative flex h-screen justify-center bg-fixed p-4 {isSubRoute
 			? 'w-1/2 transform transition-all duration-700 ease-out'
 			: 'w-full'}"
 	>
-		<div class="relative w-full max-w-4xl">
+		<div class="relative flex h-full w-full max-w-4xl flex-col">
 			<div
-				class="terminal-screen relative overflow-hidden rounded border-2 border-green-400 bg-black p-4 shadow-lg shadow-green-400/50 md:p-5"
+				class="terminal-screen relative flex flex-1 flex-col overflow-hidden rounded border-2 border-green-400 bg-black p-4 shadow-lg shadow-green-400/50 md:p-5"
 			>
-				<div class="mb-6 text-center">
+				<div class="mb-2 shrink-0 text-center">
 					<pre class="text-xs text-green-400">{`
 ╔══════════════════════════════════════════════════════════════════╗
 ║                        PROJECT MANAGER v0.1                      ║
-║                           By phillychi3                          ║
 ╚══════════════════════════════════════════════════════════════════╝
 					`}</pre>
 				</div>
 
 				<div
-					class="my-5 flex min-h-[500px] transform flex-col border-2 border-green-400 bg-black transition-all duration-300 ease-in-out"
+					class="my-2 flex min-h-0 flex-1 transform flex-col border-2 border-green-400 bg-black transition-all duration-300 ease-in-out"
 				>
 					<div class="flex justify-between bg-green-400 px-2 py-1 text-xs font-bold text-black">
 						<div class="flex gap-0">
@@ -138,7 +108,7 @@
 						</div>
 					</div>
 
-					<div class="flex flex-1 bg-black">
+					<div class="flex min-h-0 flex-1 bg-black">
 						<div class="flex w-2/5 min-w-48 flex-col border-r border-gray-600">
 							<div class="border-b border-gray-600 bg-gray-900 px-2 py-1.5 text-xs text-green-400">
 								<span class="tui-panel-title">┌─ Projects ─┐</span>
@@ -179,6 +149,11 @@
 								<span class="tui-panel-title">┌─ Project Info ─┐</span>
 							</div>
 							<div class="flex-1 overflow-y-auto p-2">
+								{#if projects.length === 0}
+									<div class="text-xs text-yellow-400">
+										[!] Failed to load repositories from GitHub (rate limited?)
+									</div>
+								{:else}
 								<div class="text-xs leading-relaxed text-gray-300">
 									<div class="mb-3 flex flex-wrap">
 										<span class="mr-2 min-w-16 font-bold text-cyan-400">Name:</span>
@@ -215,6 +190,7 @@
 										</a>
 									</div>
 								</div>
+								{/if}
 							</div>
 						</div>
 					</div>
@@ -222,12 +198,12 @@
 					<div class="flex justify-between bg-green-400 px-2 py-1 text-xs font-bold text-black">
 						<div class=""></div>
 						<div class="flex gap-3">
-							<span>Projects: {projects.length}/4</span>
+							<span>Projects: {projects.length}</span>
 						</div>
 					</div>
 				</div>
 
-				<div class="mt-8 border-t border-gray-700 pt-4 text-center">
+				<div class="mt-2 shrink-0 border-t border-gray-700 pt-2 text-center">
 					<div class="bg-black/30">
 						<div class="flex items-center justify-between text-xs">
 							<div></div>
@@ -241,7 +217,7 @@
 
 	{#if isSubRoute}
 		<div
-			class="sub-page-container animate-in slide-in-from-right-10 max-h-screen min-h-screen w-1/2 transform overflow-y-scroll border-l-2 border-green-400 bg-black p-4 transition-all duration-700 ease-out"
+			class="sub-page-container animate-in slide-in-from-right-10 h-screen w-1/2 transform overflow-y-auto border-l-2 border-green-400 bg-black p-4 transition-all duration-700 ease-out"
 		>
 			{@render children()}
 		</div>
