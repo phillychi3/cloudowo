@@ -126,6 +126,7 @@
 		name="viewport"
 		content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
 	/>
+	<link rel="canonical" href={url} />
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
 	<link
@@ -142,7 +143,7 @@
 			<div class="terminal-screen">
 				<div class="terminal-header">
 					<div class="flex flex-wrap items-center justify-between gap-2">
-						<span class="neon-text text-sm md:text-base">WHITECLOUD</span>
+						<h1 class="neon-text text-sm md:text-base">WHITECLOUD</h1>
 						<span class="time-display text-xs md:text-sm">{currentTime}</span>
 					</div>
 				</div>

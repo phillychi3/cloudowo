@@ -11,6 +11,11 @@
 	let page: HTMLElement;
 	let isBooting = true;
 
+	const pageTitle = 'WhiteCloud Linktree';
+	const pageDescription = 'Find My social links';
+	const canonicalUrl = 'https://cloudowo.com/link/star';
+	const socialImage = 'https://avatars.githubusercontent.com/u/55632143?v=4';
+
 	const links = [
 		{
 			title: 'X',
@@ -293,36 +298,57 @@
 </script>
 
 <svelte:head>
-	<title>WhiteCloud Links</title>
-	<meta
-		name="description"
-		content="WhiteCloud links and photo log in a futuristic pharmacore interface."
-	/>
+	<title>{pageTitle}</title>
+	<meta name="description" content={pageDescription} />
+	<link rel="canonical" href={canonicalUrl} />
+	<meta property="og:type" content="website" />
+	<meta property="og:site_name" content="Cloudowo" />
+	<meta property="og:title" content={pageTitle} />
+	<meta property="og:description" content={pageDescription} />
+	<meta property="og:url" content={canonicalUrl} />
+	<meta property="og:image" content={socialImage} />
+	<meta property="og:image:alt" content="WhiteCloud photo showcase preview" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:site" content="@whitecloud_kig" />
+	<meta name="twitter:title" content={pageTitle} />
+	<meta name="twitter:description" content={pageDescription} />
+	<meta name="twitter:image" content={socialImage} />
 </svelte:head>
 
 <main bind:this={page} class="star-page relative min-h-screen overflow-x-hidden text-[var(--ink)]">
 	{#if isBooting}
-		<div class="boot-screen fixed inset-0 z-20 grid place-items-center p-6" aria-label="Loading WhiteCloud links">
+		<div
+			class="boot-screen fixed inset-0 z-20 grid place-items-center p-6"
+			aria-label="Loading WhiteCloud links"
+		>
 			<div
 				class="boot-panel relative box-border w-[min(520px,calc(100vw_-_32px))] rounded-[2px] border border-[rgba(244,247,242,0.2)] bg-[rgba(9,12,13,0.96)] p-5 shadow-[0_24px_70px_rgba(0,0,0,0.36)]"
 			>
-				<div class="boot-topline flex justify-between gap-4 font-mono text-xs font-extrabold tracking-normal text-[var(--med)] uppercase">
+				<div
+					class="boot-topline flex justify-between gap-4 font-mono text-xs font-extrabold tracking-normal text-[var(--med)] uppercase"
+				>
 					<span>PHARMACORE NODE</span>
 					<span>WCL-033</span>
 				</div>
 				<div class="boot-mark grid min-h-[104px] place-items-center" aria-hidden="true">
-					<div class="biohazard-symbol">
-					</div>
+					<div class="biohazard-symbol"></div>
 				</div>
 				<div class="boot-readout">
-					<p class="m-0 font-mono text-xs font-extrabold tracking-normal text-[var(--muted)] uppercase">
+					<p
+						class="m-0 font-mono text-xs font-extrabold tracking-normal text-[var(--muted)] uppercase"
+					>
 						STERILE LINK TERMINAL
 					</p>
-					<h2 class="m-0 text-[4.5rem] leading-[0.9] font-black text-[var(--ink)] max-[640px]:text-[3.25rem]">
+					<h2
+						class="m-0 text-[4.5rem] leading-[0.9] font-black text-[var(--ink)] max-[640px]:text-[3.25rem]"
+					>
 						Whitecloud
 					</h2>
 				</div>
-				<div class="boot-progress my-6 mb-4 h-1 overflow-hidden border border-[rgba(244,247,242,0.28)] bg-white/5" aria-hidden="true">
+				<div
+					class="boot-progress my-6 mb-4 h-1 overflow-hidden border border-[rgba(244,247,242,0.28)] bg-white/5"
+					aria-hidden="true"
+				>
 					<span class="block h-full w-full origin-left"></span>
 				</div>
 				<div class="barcode h-8 opacity-[0.42]" aria-hidden="true"></div>
@@ -352,18 +378,24 @@
 			<img
 				src="https://avatars.githubusercontent.com/u/55632143?v=4"
 				alt="WhiteCloud avatar"
-				class="size-[54px] border border-[#050607] object-cover grayscale contrast-[1.08]"
+				class="size-[54px] border border-[#050607] object-cover contrast-[1.08] grayscale"
 			/>
 			<div class="min-w-0">
 				<p class="m-0 text-[15px] leading-none font-black">maintainer</p>
-				<span class="mt-[5px] block text-[13px] leading-tight text-[rgba(5,6,7,0.68)]">sleep / dream / eat</span>
+				<span class="mt-[5px] block text-[13px] leading-tight text-[rgba(5,6,7,0.68)]"
+					>sleep / dream / eat</span
+				>
 			</div>
 		</div>
 
 		<div class="grid">
 			<div class="grid min-w-0 gap-3.5">
-				<div class="system-strip motion-item flex w-fit flex-wrap gap-1.5 font-mono text-[11px] font-black tracking-normal text-[var(--muted)] uppercase max-[640px]:text-[10px]">
-					<span class="border border-[rgba(244,247,242,0.16)] bg-[rgba(244,247,242,0.035)] px-[9px] py-1.5">
+				<div
+					class="system-strip motion-item flex w-fit flex-wrap gap-1.5 font-mono text-[11px] font-black tracking-normal text-[var(--muted)] uppercase max-[640px]:text-[10px]"
+				>
+					<span
+						class="border border-[rgba(244,247,242,0.16)] bg-[rgba(244,247,242,0.035)] px-[9px] py-1.5"
+					>
 						RH-0 / PERSONAL TERMINAL
 					</span>
 					<span class="border border-[rgba(62,230,208,0.42)] px-[9px] py-1.5 text-[var(--med)]">
@@ -375,7 +407,9 @@
 				>
 					WhiteCloud
 				</h1>
-				<p class="hero-text motion-item m-0 max-w-[640px] text-[1.2rem] leading-[1.55] text-[var(--muted)] max-[640px]:max-w-[34ch] max-[640px]:text-base">
+				<p
+					class="hero-text motion-item m-0 max-w-[640px] text-[1.2rem] leading-[1.55] text-[var(--muted)] max-[640px]:max-w-[34ch] max-[640px]:text-base"
+				>
 					Is a kiger <br />and also half a photographer
 				</p>
 			</div>
@@ -401,13 +435,13 @@
 					>
 						<Icon icon={link.icon} class="size-6" />
 					</span>
-					<span class="card-copy grid max-w-[calc(100%_-_66px)] self-end gap-2.5">
-						<span
-							class="card-title text-[2.05rem] leading-[0.92] font-black text-[var(--ink)] max-[640px]:text-[2rem]"
+					<span class="card-copy grid max-w-[calc(100%_-_66px)] gap-2.5 self-end">
+						<h3
+							class="card-title m-0 text-[2.05rem] leading-[0.92] font-black text-[var(--ink)] max-[640px]:text-[2rem]"
 							data-title={link.title}
 						>
 							{link.title}
-						</span>
+						</h3>
 					</span>
 					<span
 						class="card-footer flex items-center justify-between gap-2.5 border-t border-[rgba(244,247,242,0.14)] pt-3 font-mono text-[11px] font-black tracking-normal text-[var(--med)] uppercase"
@@ -459,7 +493,9 @@
 						class="photo-overlay absolute inset-x-0 bottom-0 z-[2] flex items-end justify-between gap-5 border-t border-[rgba(244,247,242,0.18)] bg-[rgba(5,6,7,0.72)] p-[22px] max-[640px]:grid max-[640px]:gap-3 max-[640px]:p-4"
 					>
 						<div>
-							<p class="mb-[9px] mt-0 font-mono text-xs font-black tracking-normal text-[var(--med)] uppercase">
+							<p
+								class="mt-0 mb-[9px] font-mono text-xs font-black tracking-normal text-[var(--med)] uppercase"
+							>
 								{String(index + 1).padStart(2, '0')} / {photo.code}
 							</p>
 							<h3
@@ -468,7 +504,9 @@
 								{photo.title}
 							</h3>
 						</div>
-						<span class="text-right font-mono text-xs font-black tracking-normal text-[var(--med)] uppercase max-[640px]:text-left">
+						<span
+							class="text-right font-mono text-xs font-black tracking-normal text-[var(--med)] uppercase max-[640px]:text-left"
+						>
 							{photo.place}
 						</span>
 					</div>
@@ -641,7 +679,6 @@
 				linear-gradient(rgba(255, 255, 255, 0.024) 1px, transparent 1px) 0 0 / 28px 28px,
 				linear-gradient(145deg, #050607 0%, #111516 52%, #050607 100%);
 		}
-
 	}
 
 	@media (prefers-reduced-motion: reduce) {
