@@ -38,6 +38,7 @@
 	},
 	"dependencies": {
 		"@inlang/paraglide-sveltekit": "^0.15.5",
+		"gsap": "^3.15.0",
 		"marked": "^18.0.3",
 		"svelte-github-card": "^0.1.1"
 	},

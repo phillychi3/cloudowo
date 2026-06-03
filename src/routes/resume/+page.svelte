@@ -72,6 +72,7 @@
 		<h2 class="text-xl">Contest</h2>
 		<ul class="list-disc pl-8">
 			<li class="mt-2">55 全國技能中區分區賽 網路安全 佳作</li>
+			<li class="mt-2">56 全國技能中區分區賽 網路安全 第四名</li>
 		</ul>
 	</div>
 
