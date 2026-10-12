@@ -330,12 +330,12 @@
 				alt="WhiteCloud avatar"
 				class="size-[54px] border border-[#050607] object-cover contrast-[1.08] grayscale"
 			/>
-			<div class="min-w-0">
+			<a href="https://cloudowo.com/" class="min-w-0">
 				<p class="m-0 text-[15px] leading-none font-black">maintainer</p>
 				<span class="mt-[5px] block text-[13px] leading-tight text-[rgba(5,6,7,0.68)]"
-					>keep everything running</span
+					>sleep / dream / eat</span
 				>
-			</div>
+			</a>
 		</div>
 
 		<div class="grid">
@@ -349,7 +349,7 @@
 						RH-1 / SERVICE REGISTRY
 					</span>
 					<span class="border border-[rgba(62,230,208,0.42)] px-[9px] py-1.5 text-[var(--med)]">
-						{services.length} NODES ONLINE
+						{services.length} NODES
 					</span>
 				</div>
 				<h1
