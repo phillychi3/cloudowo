@@ -69,24 +69,24 @@
 			url: 'https://nothing.cloudowo.com'
 		},
 		{
-			name: 'RTPIC',
-			description: '一個自用的返圖系統',
-			url: 'https://rtpic.cloudowo.com'
+			name: 'nilphoto',
+			description: '一個自用的圖片庫',
+			url: 'https://photo.cloudowo.com'
 		},
 		{
-			name: 'MYGO',
-			description: 'mygo 圖片網',
-			url: 'https://mygo.雲.tw'
-		},
-		{
-			name: 'cloudinit',
-			description: '起始頁',
-			url: 'https://雲.tw'
+			name: 'tool',
+			description: '不好用工具箱',
+			url: 'https://tool.cloudowo.com/'
 		},
 		{
 			name: 'DDHelper',
 			description: 'Vtuber 直播資訊網站',
 			url: 'https://ddhelper.cloudowo.com'
+		},
+		{
+			name: '更多',
+			description: '更多專案請見:',
+			url: 'https://cloudowo.com/link/cloud'
 		}
 	];
 
@@ -219,7 +219,8 @@
 									{#each feedItems as item, index}
 										<div class="blog-item">
 											<div class="blog-item-header">
-												<span class="blog-number neon-cyan">[{String(index + 1).padStart(2, '0')}]</span
+												<span class="blog-number neon-cyan"
+													>[{String(index + 1).padStart(2, '0')}]</span
 												>
 												<a href={item.link} target="_blank" class="blog-title">
 													{item.title}
@@ -273,7 +274,11 @@
 							<span class="status-info">© 2026 whitecloud</span>
 						</div>
 						{#if quest.battery === 'lost'}
-							<button class="lost-battery" aria-label="一顆舊電池" onclick={() => quest.pickFromSpot()}>
+							<button
+								class="lost-battery"
+								aria-label="一顆舊電池"
+								onclick={() => quest.pickFromSpot()}
+							>
 								<BatterySprite scale={2} />
 							</button>
 						{/if}
