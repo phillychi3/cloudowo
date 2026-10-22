@@ -1,5 +1,10 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import RuinedCity from '$lib/components/RuinedCity.svelte';
+	import ServerRuin from '$lib/components/ServerRuin.svelte';
+	import BatteryCursor from '$lib/components/BatteryCursor.svelte';
+	import BatterySprite from '$lib/components/BatterySprite.svelte';
+	import { quest } from '$lib/ruins/quest.svelte';
 
 	let currentTime = '';
 	type Item = {
@@ -141,6 +146,8 @@
 	<script src="https://cdn.jsdelivr.net/npm/rss-parser@3.13.0/dist/rss-parser.min.js"></script>
 </svelte:head>
 
+<RuinedCity />
+
 <div class="crt m-2 flex flex-col justify-center md:m-10 lg:flex-row">
 	<div class="terminal-container pos-relative flex min-h-screen justify-center bg-fixed">
 		<div class="pos-relative w-full max-w-4xl px-2 lg:w-[95%] lg:px-0">
@@ -250,6 +257,11 @@
 				<div class="status-item">
 					<span class="status-info">© 2026 whitecloud</span>
 				</div>
+				{#if quest.battery === 'lost'}
+					<button class="lost-battery" aria-label="一顆舊電池" onclick={() => quest.pickFromSpot()}>
+						<BatterySprite scale={2} />
+					</button>
+				{/if}
 			</div>
 		</div>
 	</div>
@@ -310,6 +322,9 @@
 		</div>
 	</div>
 </div>
+
+<ServerRuin />
+<BatteryCursor />
 
 <style>
 	@import url('https://fontsapi.zeoseven.com/442/main/result.css');
@@ -491,7 +506,7 @@
 	}
 
 	.status-bar {
-		border-top: 1px solid #333;
+		position: relative;
 		padding-top: 15px;
 		text-align: center;
 		margin-top: 30px;
@@ -507,6 +522,46 @@
 
 	.status-info {
 		color: #888;
+	}
+
+	.lost-battery {
+		position: absolute;
+		right: 4px;
+		bottom: -4px;
+		padding: 4px;
+		background: none;
+		border: none;
+		line-height: 0;
+		opacity: 0.45;
+		transform: rotate(-12deg);
+		cursor: pointer;
+		transition: opacity 0.2s;
+		animation: glint 7s ease-in-out infinite;
+	}
+
+	.lost-battery:hover,
+	.lost-battery:focus-visible {
+		opacity: 1;
+		outline: none;
+		animation: none;
+		filter: drop-shadow(0 0 4px rgba(0, 255, 150, 0.6));
+	}
+
+	@keyframes glint {
+		0%,
+		90%,
+		100% {
+			filter: none;
+		}
+		94% {
+			filter: brightness(2) drop-shadow(0 0 3px rgba(200, 160, 64, 0.8));
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.lost-battery {
+			animation: none;
+		}
 	}
 
 	.blog-content {
