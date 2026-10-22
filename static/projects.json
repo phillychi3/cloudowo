@@ -1,41 +1,5 @@
 [
 	{
-		"name": "rt-picture-system",
-		"description": "自用返圖系統",
-		"repository": "https://github.com/phillychi3/rt-picture-system",
-		"icon": "mdi:image-multiple",
-		"slug": "rtpic",
-		"repoName": "rt-picture-system",
-		"owner": "phillychi3",
-		"language": "Svelte",
-		"stars": 0,
-		"readme": "# 返圖系統\r\n"
-	},
-	{
-		"name": "anime-ch-image",
-		"description": "繁體中文 動漫封面照收集",
-		"repository": "https://github.com/phillychi3/anime-ch-image",
-		"icon": "mdi:language-python",
-		"slug": "anime-ch-image",
-		"repoName": "anime-ch-image",
-		"owner": "phillychi3",
-		"language": "Python",
-		"stars": 0,
-		"readme": "# anime-ch-image\n\nAPI位置:\nhttps://raw.githubusercontent.com/phillychi3/anime-ch-image/refs/heads/data/anime.json\n\n並不是每部動漫都一定找的到圖片\n\n每天更新一次\n"
-	},
-	{
-		"name": "phillychi3",
-		"description": "my github profile",
-		"repository": "https://github.com/phillychi3/phillychi3",
-		"icon": "mdi:source-repository",
-		"slug": "phillychi3",
-		"repoName": "phillychi3",
-		"owner": "phillychi3",
-		"language": null,
-		"stars": 0,
-		"readme": "\n<h4>\n<p>\n  <samp>\n    <a href=\"https://twitter.com/philly030\">twitter</a> -\n    <a href=\"https://www.youtube.com/channel/UCP0PKFujYwj6jKG5UYYx8Bw\">youtube</a> -\n    <a href=\"https://www.instagram.com/white_cloud.fbk\">instagram</a> -\n    <a href=\"https://t.me/phillychi3\">telegram</a>\n  </samp>\n</p>\n</h4>\n\n<picture>\n  <img width=\"400\" src=\"/github-metrics.svg\" alt=\"Metrics\">\n</picture>\n\n<img src=\"https://count.getloli.com/get/@phillychi3?theme=rule34\">\n<picture>\n  <source\n    media=\"(prefers-color-scheme: dark)\"\n    srcset=\"https://raw.githubusercontent.com/phillychi3/phillychi3/output/github-contribution-grid-snake.svg\"\n  />\n  <source\n    media=\"(prefers-color-scheme: light)\"\n    srcset=\"https://raw.githubusercontent.com/phillychi3/phillychi3/output/github-contribution-grid-snake.svg\"\n  />\n  <img\n    alt=\"github contribution grid snake animation\"\n    src=\"https://raw.githubusercontent.com/phillychi3/phillychi3/output/github-contribution-grid-snake.svg\"\n  />\n</picture>\n</p>\n"
-	},
-	{
 		"name": "flake",
 		"description": "",
 		"repository": "https://github.com/phillychi3/flake",
@@ -46,6 +10,90 @@
 		"language": "Nix",
 		"stars": 0,
 		"readme": "# whitecloud's flake\n\n\n\n\n## Usage\n\n### Build the configuration\n\n```bash\nnix build .#darwinConfigurations.whitecloudmacos.system\n```\n\n### Apply the configuration\n\n```bash\ndarwin-rebuild switch --flake .#whitecloudmacos\n```\n\n### Update flake inputs\n\n```bash\nnix flake update\n```\n"
+	},
+	{
+		"name": "anime-ch-image",
+		"description": "繁體中文 動漫封面照收集",
+		"repository": "https://github.com/phillychi3/anime-ch-image",
+		"icon": "mdi:language-python",
+		"slug": "anime-ch-image",
+		"repoName": "anime-ch-image",
+		"owner": "phillychi3",
+		"language": "Python",
+		"stars": 1,
+		"readme": "# anime-ch-image\n\nAPI位置:\nhttps://raw.githubusercontent.com/phillychi3/anime-ch-image/refs/heads/data/anime.json\n\n並不是每部動漫都一定找的到圖片\n\n每天更新一次\n"
+	},
+	{
+		"name": "phillychi3",
+		"description": "my github profile",
+		"repository": "https://github.com/phillychi3/phillychi3",
+		"icon": "mdi:language-python",
+		"slug": "phillychi3",
+		"repoName": "phillychi3",
+		"owner": "phillychi3",
+		"language": "Python",
+		"stars": 0,
+		"readme": "\n<h4>\n<p>\n  <samp>\n    <a href=\"https://twitter.com/philly030\">twitter</a> -\n    <a href=\"https://www.youtube.com/channel/UCP0PKFujYwj6jKG5UYYx8Bw\">youtube</a> -\n    <a href=\"https://www.instagram.com/white_cloud.fbk\">instagram</a> -\n    <a href=\"https://t.me/phillychi3\">telegram</a>\n  </samp>\n</p>\n</h4>\n\n<picture>\n  <img width=\"400\" src=\"/github-metrics.svg\" alt=\"Metrics\">\n</picture>\n\n<img src=\"https://count.getloli.com/get/@phillychi3?theme=rule34\">\n<picture>\n  <source\n    media=\"(prefers-color-scheme: dark)\"\n    srcset=\"https://raw.githubusercontent.com/phillychi3/phillychi3/output/github-contribution-grid-snake.svg\"\n  />\n  <source\n    media=\"(prefers-color-scheme: light)\"\n    srcset=\"https://raw.githubusercontent.com/phillychi3/phillychi3/output/github-contribution-grid-snake.svg\"\n  />\n  <img\n    alt=\"github contribution grid snake animation\"\n    src=\"https://raw.githubusercontent.com/phillychi3/phillychi3/output/github-contribution-grid-snake.svg\"\n  />\n</picture>\n</p>\n"
+	},
+	{
+		"name": "PackSync",
+		"description": "",
+		"repository": "https://github.com/phillychi3/PackSync",
+		"icon": "simple-icons:svelte",
+		"slug": "PackSync",
+		"repoName": "PackSync",
+		"owner": "phillychi3",
+		"language": "Svelte",
+		"stars": 0,
+		"readme": "# PACKSYNC\n"
+	},
+	{
+		"name": "vrc-v2t-osc",
+		"description": "vrchat voice to text, emotional recognition",
+		"repository": "https://github.com/phillychi3/vrc-v2t-osc",
+		"icon": "mdi:language-python",
+		"slug": "vrc-v2t-osc",
+		"repoName": "vrc-v2t-osc",
+		"owner": "phillychi3",
+		"language": "Python",
+		"stars": 0,
+		"readme": "# VRC Voice to Text OSC\n"
+	},
+	{
+		"name": "slidev-reports",
+		"description": "my slidev reports",
+		"repository": "https://github.com/phillychi3/slidev-reports",
+		"icon": "mdi:vuejs",
+		"slug": "slidev-reports",
+		"repoName": "slidev-reports",
+		"owner": "phillychi3",
+		"language": "Vue",
+		"stars": 0,
+		"readme": ""
+	},
+	{
+		"name": "DDHelper_API",
+		"description": "",
+		"repository": "https://github.com/phillychi3/DDHelper_API",
+		"icon": "mdi:language-python",
+		"slug": "DDHelper_API",
+		"repoName": "DDHelper_API",
+		"owner": "phillychi3",
+		"language": "Python",
+		"stars": 0,
+		"readme": ""
+	},
+	{
+		"name": "nilphoto",
+		"description": "",
+		"repository": "https://github.com/phillychi3/nilphoto",
+		"icon": "simple-icons:svelte",
+		"slug": "nilphoto",
+		"repoName": "nilphoto",
+		"owner": "phillychi3",
+		"language": "Svelte",
+		"stars": 0,
+		"readme": "# sv\n\nEverything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).\n\n## Creating a project\n\nIf you're seeing this, you've probably already done this step. Congrats!\n\n```sh\n# create a new project in the current directory\nnpx sv create\n\n# create a new project in my-app\nnpx sv create my-app\n```\n\n## Developing\n\nOnce you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:\n\n```sh\nnpm run dev\n\n# or start the server and open the app in a new browser tab\nnpm run dev -- --open\n```\n\n## Building\n\nTo create a production version of your app:\n\n```sh\nnpm run build\n```\n\nYou can preview the production build with `npm run preview`.\n\n> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.\n"
 	},
 	{
 		"name": "cloudowo",
@@ -60,40 +108,112 @@
 		"readme": "# sv\n\nEverything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).\n\n## Creating a project\n\nIf you're seeing this, you've probably already done this step. Congrats!\n\n```bash\n# create a new project in the current directory\nnpx sv create\n\n# create a new project in my-app\nnpx sv create my-app\n```\n\n## Developing\n\nOnce you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:\n\n```bash\nnpm run dev\n\n# or start the server and open the app in a new browser tab\nnpm run dev -- --open\n```\n\n## Building\n\nTo create a production version of your app:\n\n```bash\nnpm run build\n```\n\nYou can preview the production build with `npm run preview`.\n\n> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.\n"
 	},
 	{
-		"name": "pts_world_web",
-		"description": "nothing bot , pts-world 網站",
-		"repository": "https://github.com/phillychi3/pts_world_web",
-		"icon": "simple-icons:svelte",
-		"slug": "pts_world_web",
-		"repoName": "pts_world_web",
+		"name": "sts2mm",
+		"description": "Slay The Spire 2 Mod Manager",
+		"repository": "https://github.com/phillychi3/sts2mm",
+		"icon": "mdi:language-go",
+		"slug": "sts2mm",
+		"repoName": "sts2mm",
 		"owner": "phillychi3",
-		"language": "Svelte",
+		"language": "Go",
 		"stars": 0,
-		"readme": "# create-svelte\n\nEverything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).\n\n## Creating a project\n\nIf you're seeing this, you've probably already done this step. Congrats!\n\n```bash\n# create a new project in the current directory\nnpm create svelte@latest\n\n# create a new project in my-app\nnpm create svelte@latest my-app\n```\n\n## Developing\n\nOnce you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:\n\n```bash\nnpm run dev\n\n# or start the server and open the app in a new browser tab\nnpm run dev -- --open\n```\n\n## Building\n\nTo create a production version of your app:\n\n```bash\nnpm run build\n```\n\nYou can preview the production build with `npm run preview`.\n\n> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.\n"
+		"readme": "# Slay The Spire 2 Mod Manager\n\nSlay the Spire 2 模組管理工具\n\n## 功能\n\n- **模組管理**：匯入、啟用、停用、卸載模組，本地與 Steam 工作坊模組統一管理\n- **存檔管理**：備份、還原，以及從 vanilla 複製進度到 modded 存檔\n- **工作坊同步**：匯出工作坊模組清單，讓隊友一鍵下載相同模組\n\n\n## 安裝\n\n### 下載預編譯版本\n\n至 [Releases](https://github.com/phillychi3/sts2mm/releases) 頁面下載對應平台的執行檔，解壓縮後直接執行\n\n\n\n## 使用方式\n\n### 首次設定\n\n1. 將 `sts2mm` 執行檔放在任意目錄後啟動\n2. 程式啟動時會自動偵測 Steam 遊戲目錄\n3. 若偵測失敗，請確認 Steam 已安裝且遊戲已下載完成，再切換至「設定」頁面重新偵測\n\n### 匯入模組\n\n按 `I` 開啟匯入畫面，將 `.zip` 檔案或模組資料夾**拖入視窗**，或者手動輸入，按 `Enter` 確認安裝\n\n> 首次安裝模組時，若 mod 存檔槽尚無存檔，程式會詢問是否將一般存檔複製到 mod 槽，以便延續原本進度\n\n\n### 啟用與停用\n\n模組列表會同時列出 `mods` 資料夾與**已訂閱**的工作坊模組，並標示來源。啟用狀態直接寫入遊戲的 `settings.save`（與遊戲內模組畫面的開關相同），不再搬移資料夾\n\n\n> 遊戲執行中會覆蓋設定檔，請先關閉遊戲再切換模組。工作坊模組無法卸載，請在 Steam 取消訂閱。\n> 舊版放在 `mods_disabled` 的模組會標示為「舊停用」，啟用時會自動搬回 `mods`。\n\n### 工作坊同步（多人連線）\n\n**玩家 A**：進入「工作坊」頁面按 `E`，程式會掃描已訂閱的工作坊模組，輸出 `workshop-list-*.json`，並將 ID 複製到剪貼簿。把檔案或 ID 傳給隊友\n\n**玩家 B**：進入「工作坊」頁面按 `S`，拖入清單檔或貼上 ID／工作坊網址，選擇下載方式：\n\n1. **Steam 客戶端（Steamworks）**（僅 Windows）：需開著 Steam，透過遊戲附帶的 `steam_api64.dll` 下載，不用登入，也不會訂閱\n2. **SteamCMD**：需安裝 [steamcmd](https://developer.valvesoftware.com/wiki/SteamCMD)\n\n下載完成後會複製到遊戲的 `mods` 資料夾，覆蓋同名模組，並自動存成模組包\n\n> 不是來自工作坊的模組無法用這個方式同步，匯出時會列出這些模組，請改用「模組包」導出\n"
 	},
 	{
-		"name": "slidev-reports",
-		"description": "my slidev reports",
-		"repository": "https://github.com/phillychi3/slidev-reports",
-		"icon": "mdi:language-html5",
-		"slug": "slidev-reports",
-		"repoName": "slidev-reports",
+		"name": "dglab-v3-python",
+		"description": "dgalb v3  python lib",
+		"repository": "https://github.com/phillychi3/dglab-v3-python",
+		"icon": "mdi:language-python",
+		"slug": "dglab-v3-python",
+		"repoName": "dglab-v3-python",
 		"owner": "phillychi3",
-		"language": "HTML",
+		"language": "Python",
+		"stars": 3,
+		"readme": ""
+	},
+	{
+		"name": "nhentai-favorites",
+		"description": "export your nhentai favorites.  !!! not downlod image",
+		"repository": "https://github.com/phillychi3/nhentai-favorites",
+		"icon": "mdi:language-python",
+		"slug": "nhentai-favorites",
+		"repoName": "nhentai-favorites",
+		"owner": "phillychi3",
+		"language": "Python",
+		"stars": 47,
+		"readme": "# nhentai-favorites\n\nExport your nhentai favorites to a csv file using the official [nhentai API](https://nhentai.net/api/v2/docs).\n\n## how to use?\n\n`pip install -r \".\\requirements.txt\"`\nrun `nfavorites.py` once, it will exit and generate `set.yaml`\ngenerate an API key in your [account settings](https://nhentai.net/user/settings#apikeys)\nwhen asked \"We're curious — what are you building?\", you can paste:\n\n```text\nUsing https://github.com/phillychi3/nhentai-favorites to export my favorites.\n```\n\nopen `set.yaml` and enter your API key:\n\n```yaml\napikey: YOUR_API_KEY\n```\n\nrun `nfavorites.py` again and it will generate `output.csv`\n\n![alt text](https://github.com/phillychi3/nhentai-favorites/blob/main/image/csv.png?raw=true)\n"
+	},
+	{
+		"name": "Bionic_Reading",
+		"description": "",
+		"repository": "https://github.com/phillychi3/Bionic_Reading",
+		"icon": "mdi:language-javascript",
+		"slug": "Bionic_Reading",
+		"repoName": "Bionic_Reading",
+		"owner": "phillychi3",
+		"language": "JavaScript",
 		"stars": 0,
 		"readme": ""
 	},
 	{
-		"name": "youtube_lv",
-		"description": "youtuber live status",
-		"repository": "https://github.com/phillychi3/youtube_lv",
-		"icon": "mdi:language-python",
-		"slug": "youtube_lv",
-		"repoName": "youtube_lv",
+		"name": "localserver",
+		"description": "",
+		"repository": "https://github.com/phillychi3/localserver",
+		"icon": "mdi:source-repository",
+		"slug": "localserver",
+		"repoName": "localserver",
 		"owner": "phillychi3",
-		"language": "Python",
-		"stars": 9,
-		"readme": "![image](https://shields.io/pypi/pyversions/youtube-lv)\n\n### how to download\n\n`pip install youtube-lv`\n\n### how to update\n\n`pip install --upgrade youtube-lv`\n\n### how to use\n\nYoutube\n\n```python\nfrom ytlv import youtube\nlive=youtube(\"https://www.youtube.com/@ShirakamiFubuki\")\nprint(live)\n# return Youtube class\n```\n\n#### Youtube class\n\n    channellink :str\n    link: str | None\n    status: str | None\n    islive: bool\n    title: str | None\n    picture: str | None\n    timestamp: float | None\n\n#### Youtube status\n\n      \"LIVE\" | \"READY_TO_LIVE\" | \"ERROR\"| None\n\n```python\nfrom ytlv import youtube\nlive=youtube_lives(\"https://www.youtube.com/@ShirakamiFubuki/streams\")\nprint(live)\n# return Youtube_lives class\n```\n\n#### Youtube class\n\n    [\n        channellink: str\n        link: str | None\n        picture: list[str] | None\n        title: str | None\n    ]\n\nTwitch\n\n```python\nfrom ytlv import twitch\nlive=twitch(\"iitifox\")\nprint(live)\n# return twitch class\n```\n\n#### Twitch class\n\n    link: str\n    status: str | None\n    islive: bool\n    title: str | None\n    picture: str | None\n    avatar: str | None\n\n#### Twitch status\n\n      \"LIVE\" | \"ERROR\" | None\n"
+		"language": "C#",
+		"stars": 0,
+		"readme": "# LocalServer\n\n支援：\n- Palworld\n- Rust\n- ARK\n- L4D2\n- 處理中...\n"
+	},
+	{
+		"name": "whitecloud-tools",
+		"description": "just some useless tools",
+		"repository": "https://github.com/phillychi3/whitecloud-tools",
+		"icon": "simple-icons:svelte",
+		"slug": "whitecloud-tools",
+		"repoName": "whitecloud-tools",
+		"owner": "phillychi3",
+		"language": "Svelte",
+		"stars": 0,
+		"readme": "# 不好用工具箱\n\n## Dev\n\n```\npnpm i\npnpm dev\n```\n\nopen http://localhost:5173\n"
+	},
+	{
+		"name": "create-electron-sveltekit",
+		"description": "Easy to started Sveltekit with Electron",
+		"repository": "https://github.com/phillychi3/create-electron-sveltekit",
+		"icon": "mdi:language-typescript",
+		"slug": "create-electron-sveltekit",
+		"repoName": "create-electron-sveltekit",
+		"owner": "phillychi3",
+		"language": "TypeScript",
+		"stars": 0,
+		"readme": "# create-electron-sveltekit\n\nElectron + SvelteKit desktop starter — TypeScript everywhere, a sandboxed preload bridge, and\nTurborepo caching the build.\n\n## Start up\n\n```bash\ngit clone https://github.com/phillychi3/create-electron-sveltekit\npnpm install\n```\n\n## Developing\n\n```bash\npnpm dev\n```\n\nRuns the Vite dev server, builds the Electron bundle, and opens the app on\n`http://127.0.0.1:5173` once the port is up.\n\n## Build\n\n```bash\npnpm build      # everything into build/\npnpm dist       # build + electron-builder packages into release/\n```\n\n`turbo build`, `turbo lint` and `turbo typecheck` run the same scripts with caching.\n\n## Checks\n\n```bash\npnpm typecheck  # svelte-check over all of src/\npnpm lint       # prettier + eslint\npnpm format\n```\n"
+	},
+	{
+		"name": "selfconfig",
+		"description": "自用, windows電腦初始化腳本",
+		"repository": "https://github.com/phillychi3/selfconfig",
+		"icon": "mdi:source-repository",
+		"slug": "selfconfig",
+		"repoName": "selfconfig",
+		"owner": "phillychi3",
+		"language": "PowerShell",
+		"stars": 0,
+		"readme": "# 自用 Windows 開發環境設定\n\n\n## 快速開始\n\n下載 `setup.ps1`，以系統管理員開啟 PowerShell 後執行：\n\n```powershell\nSet-ExecutionPolicy Unrestricted -Scope Process\n.\\setup.ps1\n```\n\n## 直接執行\n\n\n```powershell\nSet-ExecutionPolicy Unrestricted -Scope Process -Force\nInvoke-RestMethod https://raw.githubusercontent.com/phillychi3/selfconfig/main/setup.ps1 -OutFile setup.ps1\n.\\setup.ps1\n```\n\n> 腳本在安裝 WSL2 時會註冊開機工作並自動重新開機以完成後續設定，因此必須先存成檔案再執行，請勿使用 `irm ... | iex` 直接管線執行。\n\n## 會安裝啥\n\n**透過 Chocolatey 安裝的套件**\n\ngit、VS Code、Node.js LTS、Python、7-Zip、gsudo、Notepad++、oh-my-posh、Neovim、Nerd Fonts（Hack、FiraCode）、Go、Rust（rustup）、eza。\n\n**其他工具與設定**\n\n- Python 套件管理：`uv`、`poetry`（官方安裝腳本）\n- Rust toolchain 初始化（stable）\n- PowerShell 模組：Terminal-Icons、posh-git、PSReadLine\n- npm 全域套件：`@antfu/ni`\n- 套用 PowerShell profile 與 Windows Terminal 設定（既有設定會備份為 `old*.ps1` / `oldsettings.json`）\n- 安裝 WSL2 並設定預設使用者\n- 安裝 Docker Desktop\n\n## `other.ps1`（選用）\n\n額外的系統個人化，需另外執行：\n\n```powershell\n.\\other.ps1\n```\n\n- 若同目錄有 `image.zip`，會解壓到「圖片」資料夾並設定桌布輪轉（每 30 分鐘、隨機）\n\n## 記錄檔\n\n安裝過程會寫入記錄檔：`%TEMP%\\setup-dev-env.log`。\n"
+	},
+	{
+		"name": "tronclass-util",
+		"description": "TronClass 工具",
+		"repository": "https://github.com/phillychi3/tronclass-util",
+		"icon": "mdi:language-javascript",
+		"slug": "tronclass-util",
+		"repoName": "tronclass-util",
+		"owner": "phillychi3",
+		"language": "JavaScript",
+		"stars": 10,
+		"readme": "# TronClass 工具集合\n\n## tronclass util\n\n### 安裝\n\n請至：https://greasyfork.org/zh-TW/scripts/481617-tronclass-util\n\n### 簡介\n\n這是一個 TronClass 的小工具集合，目前具有以下功能：\n\n-   快速觀看影片\n-   一鍵完成每周影音教材觀看\n-   一鍵讀取投影片\n-   優化課程活動頁面\n-   優化課程教材頁面\n-   優化作業教材頁面\n-   隱藏頁尾\n-   防止影片焦點偵測（背景播放不中斷）\n\n## autowriteq\n\n### 自動填寫期末問卷(每次選課都要勾選的教師滿意度)\n\n-   自動填寫\n\n"
 	},
 	{
 		"name": "ddhelper-website",
@@ -106,6 +226,42 @@
 		"language": "Svelte",
 		"stars": 0,
 		"readme": "# DDHelper Website\n"
+	},
+	{
+		"name": "gilded",
+		"description": "astro theme",
+		"repository": "https://github.com/phillychi3/gilded",
+		"icon": "mdi:source-repository",
+		"slug": "gilded",
+		"repoName": "gilded",
+		"owner": "phillychi3",
+		"language": "Astro",
+		"stars": 0,
+		"readme": "# Gilded - 浮光鎏金\n\nLazy...\n\n### Features\n\n- **Astro & Svelte**: Built with Astro framework and Svelte components\n- **Image Layouts**: Support for floating left/right, full-width and other image layout options\n- **Image Gallery**: Integrated LightGallery for image viewing\n- **GitHub Admonitions**: Automatic conversion of GitHub Admonitions syntax\n\n\n### Getting Started\n\n\nEdit the `src/config.ts` file to customize your site:\n\n```typescript\nexport const SITE_TITLE = \"Your Site Title\";\nexport const SITE_DESCRIPTION = \"Your Site Description\";\nexport const COPYRIGHT_HOLDER = \"Copyright Holder\";\n```\n\n### Author Information\n\n```typescript\nexport const AUTHOR = {\n  name: \"Your Name\",\n  bio: \"Personal Bio\",\n  avatar: \"Avatar URL\",\n  email: \"your-email@example.com\",\n  location: \"Location\",\n};\n```\n\n### Navigation Menu\n\nAdd or modify navigation items in the `NAV_ITEMS` array:\n\n```typescript\nexport const NAV_ITEMS: NavItem[] = [\n  { name: \"home\", path: \"/\" },\n  { name: \"about\", path: \"/about\" },\n  { name: \"archive\", path: \"/archive\" },\n  { name: \"friends\", path: \"/friends\" },\n  // Add more navigation items...\n];\n```\n\n### Social Media Links\n\nConfigure your social media links in the `SOCIAL_LINKS` array:\n\n```typescript\nexport const SOCIAL_LINKS: SocialLink[] = [\n  {\n    name: \"GitHub\",\n    link: \"https://github.com/yourusername\",\n    icon: \"mdi:github\",\n  },\n  // Add more social links...\n];\n```\n\n## Writing Posts\n\n### Create a New Post\n\nCreate a new `.md` or `.mdx` file in the `src/content/blog/` directory:\n\n```markdown\n---\ntitle: 'Post Title'\ndescription: 'Post Description'\npublished: 2026-01-03\nupdatedDate: 2026-01-04\ntags: ['Tag1', 'Tag2']\ncategory: 'Category Name'\ncover: 'url or path to cover image'\n---\n\nPost content...\n```\n\n"
+	},
+	{
+		"name": "pts_world_web",
+		"description": "nothing bot , pts-world 網站",
+		"repository": "https://github.com/phillychi3/pts_world_web",
+		"icon": "simple-icons:svelte",
+		"slug": "pts_world_web",
+		"repoName": "pts_world_web",
+		"owner": "phillychi3",
+		"language": "Svelte",
+		"stars": 0,
+		"readme": "# create-svelte\n\nEverything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).\n\n## Creating a project\n\nIf you're seeing this, you've probably already done this step. Congrats!\n\n```bash\n# create a new project in the current directory\nnpm create svelte@latest\n\n# create a new project in my-app\nnpm create svelte@latest my-app\n```\n\n## Developing\n\nOnce you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:\n\n```bash\nnpm run dev\n\n# or start the server and open the app in a new browser tab\nnpm run dev -- --open\n```\n\n## Building\n\nTo create a production version of your app:\n\n```bash\nnpm run build\n```\n\nYou can preview the production build with `npm run preview`.\n\n> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.\n"
+	},
+	{
+		"name": "youtube_lv",
+		"description": "youtuber live status",
+		"repository": "https://github.com/phillychi3/youtube_lv",
+		"icon": "mdi:language-python",
+		"slug": "youtube_lv",
+		"repoName": "youtube_lv",
+		"owner": "phillychi3",
+		"language": "Python",
+		"stars": 9,
+		"readme": "![image](https://shields.io/pypi/pyversions/youtube-lv)\n\n### how to download\n\n`pip install youtube-lv`\n\n### how to update\n\n`pip install --upgrade youtube-lv`\n\n### how to use\n\nYoutube\n\n```python\nfrom ytlv import youtube\nlive=youtube(\"https://www.youtube.com/@ShirakamiFubuki\")\nprint(live)\n# return Youtube class\n```\n\n#### Youtube class\n\n    channellink :str\n    link: str | None\n    status: str | None\n    islive: bool\n    title: str | None\n    picture: str | None\n    timestamp: float | None\n\n#### Youtube status\n\n      \"LIVE\" | \"READY_TO_LIVE\" | \"ERROR\"| None\n\n```python\nfrom ytlv import youtube\nlive=youtube_lives(\"https://www.youtube.com/@ShirakamiFubuki/streams\")\nprint(live)\n# return Youtube_lives class\n```\n\n#### Youtube class\n\n    [\n        channellink: str\n        link: str | None\n        picture: list[str] | None\n        title: str | None\n    ]\n\nTwitch\n\n```python\nfrom ytlv import twitch\nlive=twitch(\"iitifox\")\nprint(live)\n# return twitch class\n```\n\n#### Twitch class\n\n    link: str\n    status: str | None\n    islive: bool\n    title: str | None\n    picture: str | None\n    avatar: str | None\n\n#### Twitch status\n\n      \"LIVE\" | \"ERROR\" | None\n"
 	},
 	{
 		"name": "script",
@@ -132,18 +288,6 @@
 		"readme": "# Kigurumi Static Data API\r\n\r\n## 資料格式規範\r\n\r\n## 檔案結構\r\n\r\n\r\n## Kiger 資料格式\r\n\r\n```json\r\n{\r\n  \"cos_001\": {\r\n    // Kiger 物件\r\n  }\r\n}\r\n```\r\n\r\n### Kiger 物件規範\r\n\r\n| 欄位名稱       | 類型    | 必填 | 說明                              |\r\n| -------------- | ------- | ---- | --------------------------------- |\r\n| `id`           | string  | ✓    | Kiger 唯一識別碼，格式：`cos_xxx` |\r\n| `name`         | string  | ✓    | Kiger 名稱                        |\r\n| `bio`          | string  | ✓    | 個人簡介                          |\r\n| `profileImage` | string  | ✓    | 頭像圖片 URL                      |\r\n| `isActive`     | boolean | ✓    | 是否為活躍狀態                    |\r\n| `socialMedia`  | object  | ✓    | 社交媒體資訊                      |\r\n| `Characters`   | array   | ✓    | 角色列表                          |\r\n| `createdAt`    | string  | ✓    | 建立時間，ISO 8601 格式           |\r\n| `updatedAt`    | string  | ✓    | 最後更新時間，ISO 8601 格式       |\r\n\r\n### socialMedia 物件規範\r\n\r\n| 欄位名稱    | 類型   | 必填 | 說明           |\r\n| ----------- | ------ | ---- | -------------- |\r\n| `instagram` | string | ✗    | Instagram 帳號 |\r\n| `twitter`   | string | ✗    | Twitter 帳號   |\r\n| `facebook`  | string | ✗    | Facebook 頁面  |\r\n| `tiktok`    | string | ✗    | TikTok 帳號    |\r\n| `pixiv`     | string | ✗    | Pixiv 帳號名稱 |\r\n| `website`   | string | ✗    | 個人網站 URL   |\r\n\r\n### Characters 陣列元素規範\r\n\r\n| 欄位名稱      | 類型   | 必填 | 說明                                  |\r\n| ------------- | ------ | ---- | ------------------------------------- |\r\n| `characterId` | string | ✓    | 角色 ID，對應 character.json 中的 key |\r\n| `maker`       | string | ✗    | 製作店家                              |\r\n| `images`      | array  | ✓    | 圖片 URL 陣列                         |\r\n\r\n### 範例\r\n```json\r\n{\r\n  \"SakuraSnow\": {\r\n    \"id\": \"SakuraSnow\",\r\n    \"name\": \"櫻花小雪\",\r\n    \"bio\": \"專業kiger\",\r\n    \"profileImage\": \"https://example.com/profile.jpg\",\r\n    \"position\":\"\",\r\n    \"isActive\": true,\r\n    \"socialMedia\": {\r\n      \"instagram\": \"@sakurasnow_cos\",\r\n      \"twitter\": \"@sakurasnow\",\r\n      \"facebook\": \"SakuraSnowCosplay\",\r\n      \"tiktok\": \"@sakurasnow_cos\",\r\n      \"pixiv\": \"sakurasnow\",\r\n      \"website\": \"https://sakurasnow.com\"\r\n    },\r\n    \"Characters\": [\r\n      {\r\n        \"characterId\": \"Ganyu\",\r\n        \"maker\":\"example\",\r\n        \"images\": [\r\n          \"https://example.com/profile.jpg\"\r\n        ]\r\n      }\r\n    ],\r\n    \"createdAt\": \"2024-06-01T10:00:00Z\",\r\n    \"updatedAt\": \"2024-06-02T15:30:00Z\"\r\n  }\r\n}\r\n```\r\n\r\n## 角色資料格式 (character.json)\r\n\r\n```json\r\n{\r\n  \"Ganyu\": {\r\n    // 角色物件\r\n  }\r\n}\r\n```\r\n\r\n### 角色物件規範\r\n\r\n| 欄位名稱        | 類型   | 必填 | 說明                                                        |\r\n| --------------- | ------ | ---- | ----------------------------------------------------------- |\r\n| `name`          | string | ✓    | 角色中文名稱                                                |\r\n| `originalName`  | string | ✓    | 角色原始名稱                                                |\r\n| `type`          | string | ✓    | 角色類型，可選值：`game`, `vtuber`, `anime`,  `oc`, `other` |\r\n| `officialImage` | string | ✓    | 官方角色圖片 URL                                            |\r\n| `source`        | object | ✓    | 來源作品資訊                                                |\r\n\r\n### source 物件規範\r\n\r\n| 欄位名稱      | 類型   | 必填 | 說明        |\r\n| ------------- | ------ | ---- | ----------- |\r\n| `title`       | string | ✓    | 作品標題    |\r\n| `company`     | string | ✓    | 公司/製作方 |\r\n| `releaseYear` | number | ✓    | 發布年份    |\r\n\r\n### 範例\r\n```json\r\n{\r\n  \"Ganyu\": {\r\n    \"name\": \"甘雨\",\r\n    \"originalName\": \"Ganyu\",\r\n    \"type\": \"game\",\r\n    \"officialImage\": \"https://example.com/ganyu.jpg\",\r\n    \"source\": {\r\n      \"title\": \"原神\",\r\n      \"company\": \"miHoYo\",\r\n      \"releaseYear\": 2020\r\n    }\r\n  }\r\n}\r\n```\r\n\r\n\r\n\r\n\r\n## 商家資料 (maker.json)\r\n\r\n```json\r\n{\r\n  \"Cyberloafing_S\": {\r\n    // 店家物件\r\n  }\r\n}\r\n```\r\n\r\n### 角色物件規範\r\n\r\n| 欄位名稱       | 類型   | 必填 | 說明         |\r\n| -------------- | ------ | ---- | ------------ |\r\n| `name`         | string | ✓    | 店家中文名稱 |\r\n| `originalName` | string | ✓    | 店家原始名稱 |\r\n| `Avatar`       | string | ✓    | 店家圖片 URL |\r\n| `socialMedia`  | object | ✓    | 社交媒體資訊 |\r\n\r\n### socialMedia 物件規範\r\n\r\n| 欄位名稱   | 類型   | 必填 | 說明          |\r\n| ---------- | ------ | ---- | ------------- |\r\n| `twitter`  | string | ✗    | Twitter 帳號  |\r\n| `facebook` | string | ✗    | Facebook 頁面 |\r\n| `taobao`   | string | ✗    | taobao 帳號   |\r\n| `amazon`   | string | ✗    | amazon 帳號   |\r\n| `website`  | string | ✗    | 個人網站 URL  |\r\n\r\n### 範例\r\n```json\r\n{\r\n  \"Cyberloafing_S\": {\r\n    \"name\": \"摸鱼工坊\",\r\n    \"originalName\": \"Cyberloafing_S\",\r\n    \"Avatar\": \"https://example.com/ganyu.jpg\",\r\n    \"socialMedia\": {\r\n      \"twitter\": \"Cyberloafing_S\",\r\n      \"facebook\": \"Cyberloafing_S\",\r\n      \"taobao\":\"Cyberloafing_S\",\r\n      \"amazon\":\"Cyberloafing_S\",\r\n      \"website\": \"https://example.com\"\r\n    }\r\n  }\r\n}\r\n```\r\n\r\n## 資料規範\r\n\r\n### ID 命名規則\r\n- Kiger ID：通常使用twitter用戶名稱\r\n- character ID：使用英文角色名稱（例：`Ganyu`, `Fubuki`）\r\n\r\n### 時間格式\r\n- 統一使用 ISO 8601 格式：`YYYY-MM-DDTHH:mm:ssZ`\r\n- 範例：`2024-06-01T10:00:00Z`\r\n\r\n\r\n### 角色類型值\r\n- `game` - 遊戲角色\r\n- `vtuber` - 虛擬YouTuber\r\n- `anime` - 動畫角色\r\n- `oc` - 原創角色\r\n- `other` - 其他類型"
 	},
 	{
-		"name": "sts2mm",
-		"description": "Slay The Spire 2 Mod Manager",
-		"repository": "https://github.com/phillychi3/sts2mm",
-		"icon": "mdi:language-go",
-		"slug": "sts2mm",
-		"repoName": "sts2mm",
-		"owner": "phillychi3",
-		"language": "Go",
-		"stars": 0,
-		"readme": "# Slay The Spire 2 Mod Manager\n\nSlay the Spire 2 模組管理工具，支援模組安裝/啟用/停用，以及存檔備份與還原。\n\n## 功能\n\n- **模組管理**：匯入、啟用、停用、卸載模組\n- **存檔管理**：備份與還原存檔\n- **自動偵測**：自動尋找 Steam 遊戲目錄\n\n\n## 安裝\n\n### 下載預編譯版本\n\n至 [Releases](https://github.com/phillychi3/sts2mm/releases) 頁面下載對應平台的執行檔，解壓縮後直接執行。\n\n\n\n## 使用方式\n\n### 首次設定\n\n1. 將 `sts2mm` 執行檔放在任意目錄後啟動\n2. 切換至「設定」頁面，按 `D` 自動偵測遊戲目錄\n3. 若偵測失敗，請確認 Steam 已安裝且遊戲已下載完成\n\n### 匯入模組\n\n按 `I` 開啟匯入畫面，將 `.zip` 檔案或模組資料夾**拖入視窗**，或者手動輸入，按 `Enter` 確認安裝。\n\n> 首次安裝模組時，若 mod 存檔槽尚無存檔，程式會詢問是否將一般存檔複製到 mod 槽，以便延續原本進度。\n"
-	},
-	{
 		"name": "kigurumi-list",
 		"description": "kiglist.org frontend",
 		"repository": "https://github.com/phillychi3/kigurumi-list",
@@ -154,42 +298,6 @@
 		"language": "Svelte",
 		"stars": 0,
 		"readme": "# sv\n\nEverything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).\n\n## Creating a project\n\nIf you're seeing this, you've probably already done this step. Congrats!\n\n```sh\n# create a new project\nnpx sv create my-app\n```\n\nTo recreate this project with the same configuration:\n\n```sh\n# recreate this project\npnpm dlx sv create --template minimal --types ts --add prettier eslint tailwindcss=\"plugins:none\" paraglide=\"languageTags:en,zh-tw,zh-cn+demo:yes\" --install pnpm ./\n```\n\n## Developing\n\nOnce you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:\n\n```sh\nnpm run dev\n\n# or start the server and open the app in a new browser tab\nnpm run dev -- --open\n```\n\n## Building\n\nTo create a production version of your app:\n\n```sh\nnpm run build\n```\n\nYou can preview the production build with `npm run preview`.\n\n> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.\n"
-	},
-	{
-		"name": "whitecloud-tools",
-		"description": "just some useless tools",
-		"repository": "https://github.com/phillychi3/whitecloud-tools",
-		"icon": "simple-icons:svelte",
-		"slug": "whitecloud-tools",
-		"repoName": "whitecloud-tools",
-		"owner": "phillychi3",
-		"language": "Svelte",
-		"stars": 0,
-		"readme": "# 不好用工具箱\n\n## Dev\n\n```\npnpm i\npnpm dev\n```\n\nopen http://localhost:5173\n"
-	},
-	{
-		"name": "gilded",
-		"description": "astro theme",
-		"repository": "https://github.com/phillychi3/gilded",
-		"icon": "mdi:source-repository",
-		"slug": "gilded",
-		"repoName": "gilded",
-		"owner": "phillychi3",
-		"language": "Astro",
-		"stars": 0,
-		"readme": "# Gilded - 浮光鎏金\n\nLazy...\n\n### Features\n\n- **Astro & Svelte**: Built with Astro framework and Svelte components\n- **Image Layouts**: Support for floating left/right, full-width and other image layout options\n- **Image Gallery**: Integrated LightGallery for image viewing\n- **GitHub Admonitions**: Automatic conversion of GitHub Admonitions syntax\n\n\n### Getting Started\n\n\nEdit the `src/config.ts` file to customize your site:\n\n```typescript\nexport const SITE_TITLE = \"Your Site Title\";\nexport const SITE_DESCRIPTION = \"Your Site Description\";\nexport const COPYRIGHT_HOLDER = \"Copyright Holder\";\n```\n\n### Author Information\n\n```typescript\nexport const AUTHOR = {\n  name: \"Your Name\",\n  bio: \"Personal Bio\",\n  avatar: \"Avatar URL\",\n  email: \"your-email@example.com\",\n  location: \"Location\",\n};\n```\n\n### Navigation Menu\n\nAdd or modify navigation items in the `NAV_ITEMS` array:\n\n```typescript\nexport const NAV_ITEMS: NavItem[] = [\n  { name: \"home\", path: \"/\" },\n  { name: \"about\", path: \"/about\" },\n  { name: \"archive\", path: \"/archive\" },\n  { name: \"friends\", path: \"/friends\" },\n  // Add more navigation items...\n];\n```\n\n### Social Media Links\n\nConfigure your social media links in the `SOCIAL_LINKS` array:\n\n```typescript\nexport const SOCIAL_LINKS: SocialLink[] = [\n  {\n    name: \"GitHub\",\n    link: \"https://github.com/yourusername\",\n    icon: \"mdi:github\",\n  },\n  // Add more social links...\n];\n```\n\n## Writing Posts\n\n### Create a New Post\n\nCreate a new `.md` or `.mdx` file in the `src/content/blog/` directory:\n\n```markdown\n---\ntitle: 'Post Title'\ndescription: 'Post Description'\npublished: 2026-01-03\nupdatedDate: 2026-01-04\ntags: ['Tag1', 'Tag2']\ncategory: 'Category Name'\ncover: 'url or path to cover image'\n---\n\nPost content...\n```\n\n"
-	},
-	{
-		"name": "loltronclass",
-		"description": "快速完成非同步課程",
-		"repository": "https://github.com/phillychi3/loltronclass",
-		"icon": "mdi:language-javascript",
-		"slug": "loltronclass",
-		"repoName": "loltronclass",
-		"owner": "phillychi3",
-		"language": "JavaScript",
-		"stars": 9,
-		"readme": "# TronClass 工具集合\n\n## tronclass util\n\n### 安裝\n\n請至：https://greasyfork.org/zh-TW/scripts/481617-tronclass-util\n\n### 簡介\n\n這是一個 TronClass 的小工具集合，目前具有以下功能：\n\n-   快速觀看 TronClass 影片\n-   更多功能開發中...\n\n## autowriteq\n\n### 自動填寫期末問卷(每次選課都要勾選的教師滿意度)\n\n-   自動填寫\n\n## LolTronClass\n\n### 更好考試檢測\n\n-   優化離開視窗檢測\n-   優化跳出全螢幕檢測\n-   優化浮水印\n\n## 已棄用功能\n\n### ~~Eclass 影片自動加速~~（已棄用）\n\n~~自動以 16 倍速觀看影片的功能已棄用。~~\n\n\n"
 	},
 	{
 		"name": "flowpay",
@@ -252,18 +360,6 @@
 		"readme": ""
 	},
 	{
-		"name": "nhentai-favorites",
-		"description": "export your nhentai favorites.  !!! not downlod image",
-		"repository": "https://github.com/phillychi3/nhentai-favorites",
-		"icon": "mdi:language-python",
-		"slug": "nhentai-favorites",
-		"repoName": "nhentai-favorites",
-		"owner": "phillychi3",
-		"language": "Python",
-		"stars": 45,
-		"readme": "# nhentai-favorites\r\n\r\n## how to use?\r\n\r\n`pip install -r \".\\requirements.txt\"`  \r\nopen `nfavorites.py` and it will close and generate set.yaml  \r\nopen `set.yaml` and enter your cookie and useragent  \r\nfinal open nfavorites.py again and it will generate csv file if everything is ok\r\n\r\n## how to get my cookie?\r\n\r\nopen <https://nhentai.net/favorites/>  \r\nopen developer tools (F12)  \r\nswitch to network tab  \r\nfind favorites/ and click it  \r\nfind cookie and useragent in request headers  \r\n\r\n## if something goes wrong in gettags\r\n\r\nrename `example_tag.json` to `tag.json`  \r\nrerun `nfavorites.py`  \r\n\r\n![alt text](https://github.com/phillychi3/nhentai-favorites/blob/main/image/nhentai_cookie_anduseranegt.png?raw=true)\r\n\r\n![alt text](https://github.com/phillychi3/nhentai-favorites/blob/main/image/csv.png?raw=true)\r\n"
-	},
-	{
 		"name": "xaoc2",
 		"description": "",
 		"repository": "https://github.com/phillychi3/xaoc2",
@@ -312,28 +408,16 @@
 		"readme": "# DCCARD\n"
 	},
 	{
-		"name": "vrc-v2t-osc",
-		"description": "vrchat voice to text, emotional recognition",
-		"repository": "https://github.com/phillychi3/vrc-v2t-osc",
-		"icon": "mdi:language-python",
-		"slug": "vrc-v2t-osc",
-		"repoName": "vrc-v2t-osc",
+		"name": "rt-picture-system",
+		"description": "自用返圖系統",
+		"repository": "https://github.com/phillychi3/rt-picture-system",
+		"icon": "simple-icons:svelte",
+		"slug": "rt-picture-system",
+		"repoName": "rt-picture-system",
 		"owner": "phillychi3",
-		"language": "Python",
+		"language": "Svelte",
 		"stars": 0,
-		"readme": "# vrc voice to text osc\n\nmac install\n---\n\n```bash\nbrew install portaudio\npoetry install\n```"
-	},
-	{
-		"name": "dglab-v3-python",
-		"description": "dgalb v3  python lib",
-		"repository": "https://github.com/phillychi3/dglab-v3-python",
-		"icon": "mdi:language-python",
-		"slug": "dglab-v3-python",
-		"repoName": "dglab-v3-python",
-		"owner": "phillychi3",
-		"language": "Python",
-		"stars": 3,
-		"readme": ""
+		"readme": "# 返圖系統\r\n"
 	},
 	{
 		"name": "wait",
@@ -444,18 +528,6 @@
 		"readme": ""
 	},
 	{
-		"name": "create-electron-sveltekit",
-		"description": "Easy to started Sveltekit with Electron",
-		"repository": "https://github.com/phillychi3/create-electron-sveltekit",
-		"icon": "mdi:language-javascript",
-		"slug": "create-electron-sveltekit",
-		"repoName": "create-electron-sveltekit",
-		"owner": "phillychi3",
-		"language": "JavaScript",
-		"stars": 0,
-		"readme": "# create sveltekit+electron\n\n## Start Up\n\n```bash\ngit clone https://github.com/phillychi3/create-electron-sveltekit\n\n\nnpm install # or pnpm install , yarn\n```\n\n## Developing\n\n```bash\nnpm run electron-dev\n```\n\n## Build\n\n```bash\nnpm run electron-build\n\n```\n"
-	},
-	{
 		"name": "yuntech_HW",
 		"description": "National Yunlin University of Science and Technology - MIS - Artificial Intelligence Program",
 		"repository": "https://github.com/phillychi3/yuntech_HW",
@@ -514,18 +586,6 @@
 		"language": null,
 		"stars": 0,
 		"readme": ""
-	},
-	{
-		"name": "selfconfig",
-		"description": "自用, windows電腦初始化腳本",
-		"repository": "https://github.com/phillychi3/selfconfig",
-		"icon": "mdi:source-repository",
-		"slug": "selfconfig",
-		"repoName": "selfconfig",
-		"owner": "phillychi3",
-		"language": "PowerShell",
-		"stars": 0,
-		"readme": "# 自用設定檔\n\n## 快速安裝\n\n<mark>請一定要使用 Edge 瀏覽器執行</mark>\n\n|          版本          |                                                          連結                                                           |    備註    |\n| :--------------------: | :---------------------------------------------------------------------------------------------------------------------: | :--------: |\n|   全部下載(重新啟動)   |  [進行安裝](http://boxstarter.org/package/url?https://raw.githubusercontent.com/phillychi3/selfconfig/main/setup.ps1)   | 不建議使用 |\n|  只進行設定(重新啟動)  |                                                        尚未完成                                                         |   未完成   |\n|  全部下載(不重新啟動)  | [進行安裝](http://boxstarter.org/package/nr/url?https://raw.githubusercontent.com/phillychi3/selfconfig/main/setup.ps1) | 不建議使用 |\n| 只進行設定(不重新啟動) |                                                        尚未完成                                                         |   未完成   |\n\n## 一般安裝\n\n下載 setup.ps1\n執行以下程式碼\n\n```powershell\nSet-ExecutionPolicy Unrestricted\n.\\setup.ps1\nSet-ExecutionPolicy RemoteSigned\n```\n"
 	},
 	{
 		"name": "lavalink-install",

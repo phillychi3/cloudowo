@@ -92,6 +92,10 @@
 		{
 			name: 'IceWingsOvO',
 			url: 'https://fringe-fuschia-93b.notion.site/IceWings-World-2d4862315252419ca84a69acd893d70b'
+		},
+		{
+			name: 'ChiLin',
+			url: 'https://neko70.net'
 		}
 	];
 
@@ -244,15 +248,12 @@
 
 			<div class="status-bar">
 				<div class="status-item">
-					<span class="neon-green">ONLINE</span> │
-					<span class="neon-yellow">READY</span> │
-					<span class="neon-pink">TERMINAL MODE</span> │
-					<span class="status-info">© 2025 whitecloud</span>
+					<span class="status-info">© 2026 whitecloud</span>
 				</div>
 			</div>
 		</div>
 	</div>
-	<div class="mt-6 flex w-full flex-col space-y-6 lg:mt-0 lg:w-auto lg:min-w-[200px]">
+	<div class="mt-6 flex w-full flex-col space-y-6 lg:mt-0 lg:w-auto lg:min-w-[260px]">
 		<div class="terminal-screen ml-0 lg:ml-4">
 			<div class="">
 				<h3 class="neon-cyan mb-3 text-sm font-bold md:text-base">Links</h3>
@@ -292,8 +293,15 @@
 		<div class="banner-container ml-0 lg:ml-4">
 			<div class="banner-scroll">
 				<div class="banner-track">
-					{#each [...Banners] as banner}
-						<a href={banner.link} target="_blank" rel="noopener noreferrer" class="banner-item">
+					{#each [...Banners, ...Banners] as banner, i}
+						<a
+							href={banner.link}
+							target="_blank"
+							rel="noopener noreferrer"
+							class="banner-item"
+							aria-hidden={i >= Banners.length}
+							tabindex={i >= Banners.length ? -1 : undefined}
+						>
 							<img src={banner.image} alt="Banner" />
 						</a>
 					{/each}
@@ -847,12 +855,13 @@
 
 	.banner-scroll {
 		overflow: hidden;
-		width: 100%;
+		/* 不讓 banner 撐開欄寬，只填滿父層 */
+		width: 0;
+		min-width: 100%;
 	}
 
 	.banner-track {
 		display: flex;
-		gap: 16px;
 		animation: banner-scroll 10s linear infinite;
 		width: max-content;
 	}
@@ -864,6 +873,7 @@
 	.banner-item {
 		flex-shrink: 0;
 		display: block;
+		margin-right: 16px;
 	}
 
 	.banner-item img {
@@ -877,7 +887,7 @@
 			transform: translateX(0);
 		}
 		100% {
-			transform: translateX(-100%);
+			transform: translateX(-50%);
 		}
 	}
 </style>

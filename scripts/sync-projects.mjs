@@ -3,15 +3,6 @@ import { writeFile } from 'node:fs/promises';
 const owner = 'phillychi3';
 const outFile = new URL('../static/projects.json', import.meta.url);
 
-const featured = {
-	'Lithium-player': { name: 'Lithium Player', icon: 'mdi:music-note', slug: 'LithiumPlayer' },
-	YASS: { name: 'Yet Another Server Status', icon: 'mdi:chart-line', slug: 'YASS' },
-	anyknowledge: { name: 'AnyKnowledge', icon: 'mdi:brain', slug: 'anyknowledge' },
-	'rt-picture-system': { name: 'rt-picture-system', icon: 'mdi:image-multiple', slug: 'rtpic' },
-	NSPES: { name: 'NSPES', icon: 'mdi:school', slug: 'NSPES' },
-	SSMS: { name: 'SSMS', icon: 'mdi:server', slug: 'SSMS' }
-};
-
 const iconByLang = {
 	TypeScript: 'mdi:language-typescript',
 	JavaScript: 'mdi:language-javascript',
@@ -60,24 +51,18 @@ const repos = await fetchRepos();
 const projects = await Promise.all(
 	repos
 		.filter((repo) => !repo.fork && !repo.archived)
-		.sort((a, b) => {
-			const af = featured[a.name] ? 1 : 0;
-			const bf = featured[b.name] ? 1 : 0;
-			if (af !== bf) return bf - af;
-			return new Date(b.pushed_at).getTime() - new Date(a.pushed_at).getTime();
-		})
+		.sort((a, b) => new Date(b.pushed_at).getTime() - new Date(a.pushed_at).getTime())
 		.map(async (repo) => {
-			const f = featured[repo.name];
 			const readme = await getText(
 				`https://raw.githubusercontent.com/${owner}/${repo.name}/HEAD/README.md`
 			);
 
 			return {
-				name: f?.name ?? repo.name,
+				name: repo.name,
 				description: repo.description ?? '',
 				repository: repo.html_url,
-				icon: f?.icon ?? iconByLang[repo.language] ?? 'mdi:source-repository',
-				slug: f?.slug ?? repo.name,
+				icon: iconByLang[repo.language] ?? 'mdi:source-repository',
+				slug: repo.name,
 				repoName: repo.name,
 				owner,
 				language: repo.language,
