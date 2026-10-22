@@ -5,6 +5,9 @@
 	import BatteryCursor from '$lib/components/BatteryCursor.svelte';
 	import BatterySprite from '$lib/components/BatterySprite.svelte';
 	import { quest } from '$lib/ruins/quest.svelte';
+	import { era } from '$lib/era.svelte';
+	import ModernView from '$lib/components/ModernView.svelte';
+	import TimeWarp from '$lib/components/TimeWarp.svelte';
 
 	let currentTime = '';
 	type Item = {
@@ -38,6 +41,8 @@
 	}
 
 	onMount(() => {
+		era.load();
+
 		function updateTime() {
 			const now = new Date();
 			currentTime = now.toLocaleTimeString('zh-TW', {
@@ -146,185 +151,199 @@
 	<script src="https://cdn.jsdelivr.net/npm/rss-parser@3.13.0/dist/rss-parser.min.js"></script>
 </svelte:head>
 
-<RuinedCity />
+<RuinedCity restored={era.current === 'modern'} />
 
-<div class="crt m-2 flex flex-col justify-center md:m-10 lg:flex-row">
-	<div class="terminal-container pos-relative flex min-h-screen justify-center bg-fixed">
-		<div class="pos-relative w-full max-w-4xl px-2 lg:w-[95%] lg:px-0">
-			<div class="terminal-screen">
-				<div class="terminal-header">
-					<div class="flex flex-wrap items-center justify-between gap-2">
-						<h1 class="neon-text text-sm md:text-base">WHITECLOUD</h1>
-						<span class="time-display text-xs md:text-sm">{currentTime}</span>
-					</div>
-				</div>
-				<div class="about-section">
-					<div class="about-content flex-col md:flex-row">
-						<div class="terminal-box">
-							<div class="terminal-box-header">
-								<span class="file-name">whoami.txt</span>
-								<span class="controls">- □ ×</span>
-							</div>
-							<div class="p-[15px]">
-								<div class="code-line">
-									<span class="prompt">$</span> cat about.txt
-								</div>
-								<div class="output-line">Hi! 我是 WhiteCloud，一個熱愛技術與創作的開發者。</div>
-								<div class="output-line">
-									專注於網頁開發、UI/UX 設計，以及各種有趣的 side projects。
-								</div>
-								<div class="code-line">
-									<span class="prompt">$</span>
-									<span class="cursor-blink">█</span>
-								</div>
+{#if era.current === 'modern'}
+	<ModernView
+		{currentTime}
+		posts={feedItems}
+		projects={Projects}
+		friends={Friends}
+		banners={Banners}
+	/>
+{:else}
+	<div class="era-ruins">
+		<div class="crt m-2 flex flex-col justify-center md:m-10 lg:flex-row">
+			<div class="terminal-container pos-relative flex min-h-screen justify-center bg-fixed">
+				<div class="pos-relative w-full max-w-4xl px-2 lg:w-[95%] lg:px-0">
+					<div class="terminal-screen">
+						<div class="terminal-header">
+							<div class="flex flex-wrap items-center justify-between gap-2">
+								<h1 class="neon-text text-sm md:text-base">WHITECLOUD</h1>
+								<span class="time-display text-xs md:text-sm">{currentTime}</span>
 							</div>
 						</div>
-						<img
-							src="https://avatars.githubusercontent.com/u/55632143?v=4"
-							alt="Avatar"
-							class="mx-auto mt-4 h-24 w-24 border-2 border-green-400 object-cover md:mx-0 md:mt-0 md:ml-6 md:h-30 md:w-30"
-						/>
-					</div>
-				</div>
-			</div>
-
-			<div class="terminal-screen blog-section">
-				<h2 class="neon-text text-xl md:text-2xl">BLOG</h2>
-				<div class="blog-content">
-					{#if feedItems.length === 0}
-						<div class="loading-container">
-							<div class="code-line">
-								<span class="prompt">$</span>
-								<span class="loading-text">Loading blog posts</span>
-								<span class="cursor-blink">█</span>
+						<div class="about-section">
+							<div class="about-content flex-col md:flex-row">
+								<div class="terminal-box">
+									<div class="terminal-box-header">
+										<span class="file-name">whoami.txt</span>
+										<span class="controls">- □ ×</span>
+									</div>
+									<div class="p-[15px]">
+										<div class="code-line">
+											<span class="prompt">$</span> cat about.txt
+										</div>
+										<div class="output-line">Hi! 我是 WhiteCloud，一個熱愛技術與創作的開發者。</div>
+										<div class="output-line">
+											專注於網頁開發、UI/UX 設計，以及各種有趣的 side projects。
+										</div>
+										<div class="code-line">
+											<span class="prompt">$</span>
+											<span class="cursor-blink">█</span>
+										</div>
+									</div>
+								</div>
+								<img
+									src="https://avatars.githubusercontent.com/u/55632143?v=4"
+									alt="Avatar"
+									class="mx-auto mt-4 h-24 w-24 border-2 border-green-400 object-cover md:mx-0 md:mt-0 md:ml-6 md:h-30 md:w-30"
+								/>
 							</div>
 						</div>
-					{:else}
-						<div class="blog-list">
-							{#each feedItems as item, index}
-								<div class="blog-item">
-									<div class="blog-item-header">
-										<span class="blog-number neon-cyan">[{String(index + 1).padStart(2, '0')}]</span
-										>
-										<a href={item.link} target="_blank" class="blog-title">
-											{item.title}
+					</div>
+
+					<div class="terminal-screen blog-section">
+						<h2 class="neon-text text-xl md:text-2xl">BLOG</h2>
+						<div class="blog-content">
+							{#if feedItems.length === 0}
+								<div class="loading-container">
+									<div class="code-line">
+										<span class="prompt">$</span>
+										<span class="loading-text">Loading blog posts</span>
+										<span class="cursor-blink">█</span>
+									</div>
+								</div>
+							{:else}
+								<div class="blog-list">
+									{#each feedItems as item, index}
+										<div class="blog-item">
+											<div class="blog-item-header">
+												<span class="blog-number neon-cyan">[{String(index + 1).padStart(2, '0')}]</span
+												>
+												<a href={item.link} target="_blank" class="blog-title">
+													{item.title}
+												</a>
+											</div>
+											{#if item.contentSnippet}
+												<div class="blog-snippet">{item.contentSnippet}</div>
+											{/if}
+											{#if item.pubDate}
+												<div class="blog-date">
+													{new Date(item.pubDate).toLocaleDateString('zh-TW')}
+												</div>
+											{/if}
+										</div>
+									{/each}
+								</div>
+								<div class="blog-footer">
+									<div class="code-line">
+										<span class="prompt">$</span>
+										<a href="https://blog.cloudowo.com" target="_blank" class="neon-cyan">
+											cd blog.cloudowo.com
 										</a>
 									</div>
-									{#if item.contentSnippet}
-										<div class="blog-snippet">{item.contentSnippet}</div>
-									{/if}
-									{#if item.pubDate}
-										<div class="blog-date">
-											{new Date(item.pubDate).toLocaleDateString('zh-TW')}
-										</div>
-									{/if}
+								</div>
+							{/if}
+						</div>
+					</div>
+
+					<div class="terminal-screen projects-section">
+						<h2 class="neon-text text-xl md:text-2xl">PROJECTS</h2>
+						<div class="flex flex-col gap-4">
+							{#each Projects as project}
+								<div class="project-item">
+									<a
+										class="neon-cyan cursor-pointer text-base hover:underline md:text-lg"
+										href={project.url}
+										target="_blank"
+									>
+										{project.name}
+									</a>
+									<p class="text-sm text-gray-300 md:text-base">
+										{project.description}
+									</p>
 								</div>
 							{/each}
 						</div>
-						<div class="blog-footer">
-							<div class="code-line">
-								<span class="prompt">$</span>
-								<a href="https://blog.cloudowo.com" target="_blank" class="neon-cyan">
-									cd blog.cloudowo.com
-								</a>
-							</div>
+					</div>
+
+					<div class="status-bar">
+						<div class="status-item">
+							<span class="status-info">© 2026 whitecloud</span>
 						</div>
-					{/if}
+						{#if quest.battery === 'lost'}
+							<button class="lost-battery" aria-label="一顆舊電池" onclick={() => quest.pickFromSpot()}>
+								<BatterySprite scale={2} />
+							</button>
+						{/if}
+					</div>
 				</div>
 			</div>
-
-			<div class="terminal-screen projects-section">
-				<h2 class="neon-text text-xl md:text-2xl">PROJECTS</h2>
-				<div class="flex flex-col gap-4">
-					{#each Projects as project}
-						<div class="project-item">
+			<div class="mt-6 flex w-full flex-col space-y-6 lg:mt-0 lg:w-auto lg:min-w-[260px]">
+				<div class="terminal-screen ml-0 lg:ml-4">
+					<div class="">
+						<h3 class="neon-cyan mb-3 text-sm font-bold md:text-base">Links</h3>
+						<div class="space-y-2">
 							<a
-								class="neon-cyan cursor-pointer text-base hover:underline md:text-lg"
-								href={project.url}
+								href="https://blog.cloudowo.com"
+								class="bg-opacity-30 hover:bg-opacity-50 block rounded bg-black p-2 text-sm text-gray-300 transition-all"
 								target="_blank"
 							>
-								{project.name}
+								<p>Blog</p>
 							</a>
-							<p class="text-sm text-gray-300 md:text-base">
-								{project.description}
-							</p>
+							<a
+								href="/projects"
+								class="bg-opacity-30 hover:bg-opacity-50 block rounded bg-black p-2 text-sm text-gray-300 transition-all"
+							>
+								<p>Projects</p>
+							</a>
 						</div>
-					{/each}
+					</div>
+				</div>
+				<div class="terminal-screen ml-0 lg:ml-4">
+					<div class="">
+						<h3 class="neon-cyan mb-3 text-sm font-bold md:text-base">Friends</h3>
+						<div class="space-y-2">
+							{#each Friends as friend}
+								<a
+									href={friend.url}
+									class="bg-opacity-30 hover:bg-opacity-50 block rounded bg-black text-sm text-gray-300 transition-all"
+									target="_blank"
+								>
+									<p>{friend.name}</p>
+								</a>
+							{/each}
+						</div>
+					</div>
+				</div>
+				<div class="banner-container ml-0 lg:ml-4">
+					<div class="banner-scroll">
+						<div class="banner-track">
+							{#each [...Banners, ...Banners] as banner, i}
+								<a
+									href={banner.link}
+									target="_blank"
+									rel="noopener noreferrer"
+									class="banner-item"
+									aria-hidden={i >= Banners.length}
+									tabindex={i >= Banners.length ? -1 : undefined}
+								>
+									<img src={banner.image} alt="Banner" />
+								</a>
+							{/each}
+						</div>
+					</div>
 				</div>
 			</div>
+		</div>
 
-			<div class="status-bar">
-				<div class="status-item">
-					<span class="status-info">© 2026 whitecloud</span>
-				</div>
-				{#if quest.battery === 'lost'}
-					<button class="lost-battery" aria-label="一顆舊電池" onclick={() => quest.pickFromSpot()}>
-						<BatterySprite scale={2} />
-					</button>
-				{/if}
-			</div>
-		</div>
+		<ServerRuin />
+		<BatteryCursor />
 	</div>
-	<div class="mt-6 flex w-full flex-col space-y-6 lg:mt-0 lg:w-auto lg:min-w-[260px]">
-		<div class="terminal-screen ml-0 lg:ml-4">
-			<div class="">
-				<h3 class="neon-cyan mb-3 text-sm font-bold md:text-base">Links</h3>
-				<div class="space-y-2">
-					<a
-						href="https://blog.cloudowo.com"
-						class="bg-opacity-30 hover:bg-opacity-50 block rounded bg-black p-2 text-sm text-gray-300 transition-all"
-						target="_blank"
-					>
-						<p>Blog</p>
-					</a>
-					<a
-						href="/projects"
-						class="bg-opacity-30 hover:bg-opacity-50 block rounded bg-black p-2 text-sm text-gray-300 transition-all"
-					>
-						<p>Projects</p>
-					</a>
-				</div>
-			</div>
-		</div>
-		<div class="terminal-screen ml-0 lg:ml-4">
-			<div class="">
-				<h3 class="neon-cyan mb-3 text-sm font-bold md:text-base">Friends</h3>
-				<div class="space-y-2">
-					{#each Friends as friend}
-						<a
-							href={friend.url}
-							class="bg-opacity-30 hover:bg-opacity-50 block rounded bg-black text-sm text-gray-300 transition-all"
-							target="_blank"
-						>
-							<p>{friend.name}</p>
-						</a>
-					{/each}
-				</div>
-			</div>
-		</div>
-		<div class="banner-container ml-0 lg:ml-4">
-			<div class="banner-scroll">
-				<div class="banner-track">
-					{#each [...Banners, ...Banners] as banner, i}
-						<a
-							href={banner.link}
-							target="_blank"
-							rel="noopener noreferrer"
-							class="banner-item"
-							aria-hidden={i >= Banners.length}
-							tabindex={i >= Banners.length ? -1 : undefined}
-						>
-							<img src={banner.image} alt="Banner" />
-						</a>
-					{/each}
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
+{/if}
 
-<ServerRuin />
-<BatteryCursor />
+<TimeWarp />
 
 <style>
 	@import url('https://fontsapi.zeoseven.com/442/main/result.css');

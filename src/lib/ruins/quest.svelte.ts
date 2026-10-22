@@ -7,6 +7,8 @@ class Quest {
 
 	full = $state(false);
 	message = $state('');
+	updateReady = $state(false);
+	private updateTimer: ReturnType<typeof setTimeout> | undefined;
 
 	private from: 'lost' | 'charged' = 'lost';
 	private chargeStart = 0;
@@ -78,8 +80,12 @@ class Quest {
 			this.battery = 'installed';
 			this.installedAt = performance.now();
 			this.say('電力恢復，伺服器重新啟動中…');
+			this.updateTimer = setTimeout(() => {
+				this.updateReady = true;
+				this.say('偵測到系統更新，點擊螢幕安裝');
+			}, 4000);
 		} else if (this.battery === 'installed') {
-			this.say('伺服器運作中');
+			this.say(this.updateReady ? '有一個系統更新等著安裝，點擊螢幕' : '伺服器運作中');
 		} else {
 			this.say('電池槽是空的，備用電力只剩 3%');
 		}
@@ -89,6 +95,16 @@ class Quest {
 		if (this.battery !== 'carry') return;
 		this.battery = this.from;
 		this.say(this.from === 'lost' ? '把電池放回原處' : '把電池放回充電座');
+	}
+
+	reset() {
+		clearTimeout(this.chargeTimer);
+		clearTimeout(this.updateTimer);
+		this.battery = 'lost';
+		this.full = false;
+		this.from = 'lost';
+		this.updateReady = false;
+		this.message = '';
 	}
 }
 

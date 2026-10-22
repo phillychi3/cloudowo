@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 	import { renderServer, type ServerState } from '$lib/ruins/server';
 	import { quest } from '$lib/ruins/quest.svelte';
+	import { era } from '$lib/era.svelte';
 
 	const H = 80;
 	const PAD = 10;
@@ -12,6 +13,7 @@
 	let canvas: HTMLCanvasElement;
 	let slotBox = $state<Box>();
 	let stationBox = $state<Box>();
+	let crtBox = $state<Box>();
 
 	function currentState(now: number): ServerState {
 		const installed = quest.battery === 'installed';
@@ -20,7 +22,8 @@
 				quest.battery === 'charging' ? 'charging' : quest.battery === 'charged' ? 'full' : 'empty',
 			progress: quest.chargeProgress(now),
 			installed,
-			bootT: installed ? (now - quest.installedAt) / 1000 : 0
+			bootT: installed ? (now - quest.installedAt) / 1000 : 0,
+			updateReady: quest.updateReady
 		};
 	}
 
@@ -37,6 +40,7 @@
 		});
 
 		function draw(now: number) {
+			if (!canvas.width) return;
 			const frame = renderServer(
 				canvas.width,
 				canvas.height,
@@ -50,14 +54,16 @@
 		function resize() {
 			px = wrap.clientWidth < 640 ? 2 : 3;
 			const w = Math.ceil(wrap.clientWidth / px);
-			if (w === canvas.width) return;
+			// 已穿越的訪客在 JS 接手前廢墟是 display:none，寬度為 0
+			if (!w || w === canvas.width) return;
 			canvas.width = w;
 			canvas.height = H;
 			canvas.style.width = `${w * px}px`;
 			canvas.style.height = `${H * px}px`;
-			const frame = draw(performance.now());
+			const frame = draw(performance.now())!;
 			slotBox = toBox(frame.slot);
 			stationBox = toBox(frame.station);
+			crtBox = toBox(frame.crt);
 		}
 
 		const ro = new ResizeObserver(resize);
@@ -102,6 +108,14 @@
 			style={style(stationBox)}
 			aria-label="太陽能充電座"
 			onclick={() => quest.useStation()}
+		></button>
+	{/if}
+	{#if crtBox && quest.updateReady}
+		<button
+			class="hotspot target"
+			style={style(crtBox)}
+			aria-label="安裝系統更新"
+			onclick={() => era.travel()}
 		></button>
 	{/if}
 </div>

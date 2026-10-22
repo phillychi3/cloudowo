@@ -26,17 +26,43 @@ const BIRD = [
 	['.........', 'xxx...xxx', '...xxx...', '....a....']
 ];
 
+const DUSK_PALETTE: Record<string, RGB> = {
+	...PALETTE,
+	a: [42, 30, 52],
+	b: [58, 48, 78],
+	h: [120, 104, 150],
+	r: [150, 140, 170],
+	x: [46, 32, 56],
+	k: [200, 154, 90],
+	w: [255, 233, 176],
+	f: [255, 246, 208],
+	t: [255, 77, 77]
+};
+
+const DELIVERY = [
+	['rrrr.....rrrr', '.a.........a.', '.aaabbbbbaaa.', '....bhhhb....', '.....kkk.....', '.....kkk.....'],
+	['.rr.r...r.rr.', '.a.........a.', '.aaabbbbbaaa.', '....bhhhb....', '.....kkk.....', '.....kkk.....']
+];
+
+// 飛行車，車頭朝右
+const CAR = ['...bbbbb...', '..bwwbwwb..', 'tbbbbbbbbbf', '.hh.....hh.'];
+const mirror = (rows: string[]) => rows.map((r) => [...r].reverse().join(''));
+
 const BEAM: RGB = [95, 255, 190];
+const HEADLIGHT: RGB = [255, 246, 208];
 
 type Drone = { x: number; y: number; tx: number; ty: number; roof: number; scanUntil: number };
 type Bird = { dx: number; dy: number; phase: number };
 type Flock = { x: number; y: number; dir: number; speed: number; birds: Bird[] };
+type Vehicle = { x: number; y: number; dir: number; speed: number; kind: 'car' | 'drone' };
 
 export function createFlyers(frame: CityFrame, K: number, rand: () => number = Math.random) {
 	const W = frame.width * K;
 	const H = frame.height * K;
 	const groundY = frame.scene.groundY * K;
 	const S = frame.scene.S * K;
+	const restored = frame.scene.restored;
+	const pal = restored ? DUSK_PALETTE : PALETTE;
 	const roofs = frame.scene.roofs.map((r) => ({ x: r.x * K, w: r.w * K, top: r.top * K }));
 
 	const sprite = (put: Put, rows: string[], cx: number, cy: number, hide = '') => {
@@ -46,13 +72,31 @@ export function createFlyers(frame: CityFrame, K: number, rand: () => number = M
 			for (let i = 0; i < row.length; i++) {
 				const ch = row[i];
 				if (ch === '.' || hide.includes(ch)) continue;
-				put(ox + i, oy + j, PALETTE[ch], ch === 'r' ? 0.7 : 1);
+				put(ox + i, oy + j, pal[ch], ch === 'r' ? 0.7 : 1);
 			}
 		});
 	};
 
+	// 全盛時期的空中車道，越高越遠、越慢
+	const lanes = [0.6, 0.7, 0.8].map((f, i) => ({ y: groundY - S * f, dir: i % 2 === 0 ? 1 : -1, depth: 1 - i * 0.2 }));
+	let traffic: Vehicle[] = [];
+	let nextVehicle = 0;
+	const spawnVehicle = (x?: number) => {
+		const lane = lanes[Math.floor(rand() * lanes.length)];
+		const kind = rand() < 0.25 ? 'drone' : 'car';
+		const speed = (kind === 'car' ? 26 + rand() * 18 : 10 + rand() * 4) * K * lane.depth;
+		traffic.push({
+			x: x ?? (lane.dir > 0 ? -20 * K : W + 20 * K),
+			y: lane.y + (rand() - 0.5) * 4 * K,
+			dir: lane.dir,
+			speed,
+			kind
+		});
+	};
+	if (restored) for (let i = 0; i < 6; i++) spawnVehicle(rand() * W);
+
 	const drones: Drone[] = [];
-	const droneCount = roofs.length === 0 ? 0 : W > 220 * K ? 2 : 1;
+	const droneCount = restored || roofs.length === 0 ? 0 : W > 220 * K ? 2 : 1;
 	for (let i = 0; i < droneCount; i++) {
 		const x = rand() * W;
 		const y = groundY - S * (0.5 + rand() * 0.2);
@@ -136,6 +180,25 @@ export function createFlyers(frame: CityFrame, K: number, rand: () => number = M
 
 			const spin = Math.floor(t * 16) % 2;
 			sprite(put, DRONE[spin], x, y, t % 1 < 0.15 ? '' : 'l');
+		}
+
+		if (restored) {
+			if (t >= nextVehicle) {
+				spawnVehicle();
+				nextVehicle = t + 0.5 + rand() * 1.2;
+			}
+			traffic = traffic.filter((v) => v.x > -30 * K && v.x < W + 30 * K);
+			for (const v of traffic) {
+				v.x += v.dir * v.speed * dt;
+				const y = v.y + (v.kind === 'drone' ? Math.sin(t * 3 + v.speed) * K * 0.5 : 0);
+				if (v.kind === 'drone') {
+					sprite(put, DELIVERY[Math.floor(t * 16) % 2], v.x, y);
+					continue;
+				}
+				sprite(put, v.dir > 0 ? CAR : mirror(CAR), v.x, y);
+				const nose = Math.round(v.x + v.dir * (CAR[0].length / 2 + 1));
+				for (let k = 0; k < 6 * K; k++) put(nose + v.dir * k, Math.round(y) + 2, HEADLIGHT, 0.3 * (1 - k / (6 * K)));
+			}
 		}
 
 		if (t >= nextFlock) {

@@ -64,17 +64,31 @@ export type ServerState = {
 	progress: number;
 	installed: boolean;
 	bootT: number;
+	updateReady: boolean;
 };
 
 export type ServerFrame = {
 	data: Uint8ClampedArray<ArrayBuffer>;
 	slot: Rect;
 	station: Rect;
+	crt: Rect;
 };
 
-const IDLE: ServerState = { station: 'empty', progress: 0, installed: false, bootT: 0 };
+const IDLE: ServerState = {
+	station: 'empty',
+	progress: 0,
+	installed: false,
+	bootT: 0,
+	updateReady: false
+};
 
-export function renderServer(W: number, H: number, t: number, state = IDLE, seed = 1023): ServerFrame {
+export function renderServer(
+	W: number,
+	H: number,
+	t: number,
+	state = IDLE,
+	seed = 1023
+): ServerFrame {
 	const data = new Uint8ClampedArray(W * H * 4);
 	const rng = mulberry32(seed);
 	const rand = (a: number, b: number) => a + rng() * (b - a);
@@ -100,8 +114,8 @@ export function renderServer(W: number, H: number, t: number, state = IDLE, seed
 	const rect = (x: number, y: number, w: number, h: number, c: RGB) => {
 		for (let yy = y; yy < y + h; yy++) for (let xx = x; xx < x + w; xx++) set(xx, yy, c);
 	};
-	const blink = (period: number, duty: number, offset = 0) => ((t + offset) % period) / period < duty;
-
+	const blink = (period: number, duty: number, offset = 0) =>
+		((t + offset) % period) / period < duty;
 
 	const battery = (x: number, y: number, charge: number) => {
 		for (let j = 0; j < 6; j++)
@@ -113,7 +127,14 @@ export function renderServer(W: number, H: number, t: number, state = IDLE, seed
 		set(x + 15, y + 3, C.copper);
 		const bars = Math.ceil(charge * 3 - 0.001);
 		for (let b = 0; b < 3; b++) {
-			const c = charge >= 1 ? C.ledGreen : b < bars ? C.ledAmber : b === 0 ? C.batteryDead : C.metal;
+			const c =
+				charge >= 1
+					? C.ledGreen
+					: b < bars
+						? C.ledAmber
+						: b === 0
+							? C.batteryDead
+							: C.metal;
 			rect(x + 5 + b * 3, y + 2, 2, 2, c);
 		}
 	};
@@ -142,7 +163,11 @@ export function renderServer(W: number, H: number, t: number, state = IDLE, seed
 		const bh = randInt(2, 4);
 		for (let i = 0; i < bw; i++)
 			for (let j = 0; j < bh - (i === 0 || i === bw - 1 ? 1 : 0); j++)
-				set(bx + i, surface[Math.min(W - 1, Math.max(0, bx))] - j, j === bh - 1 ? C.concreteLight : C.concrete);
+				set(
+					bx + i,
+					surface[Math.min(W - 1, Math.max(0, bx))] - j,
+					j === bh - 1 ? C.concreteLight : C.concrete
+				);
 	}
 
 	// ── 後方的纜線，垂到地面再沒入草叢 ──
@@ -159,7 +184,9 @@ export function renderServer(W: number, H: number, t: number, state = IDLE, seed
 			const k = i / len;
 			const x = sx + dir * i;
 			const ground = surface[Math.max(0, Math.min(W - 1, Math.round(x)))] - 1;
-			const y = Math.round(Math.min(ground, sy + Math.sin(k * Math.PI * 0.5) * (groundY - sy)));
+			const y = Math.round(
+				Math.min(ground, sy + Math.sin(k * Math.PI * 0.5) * (groundY - sy))
+			);
 			for (let yy = Math.min(prev, y); yy <= Math.max(prev, y); yy++) set(x, yy, color);
 			prev = y;
 		}
@@ -194,7 +221,12 @@ export function renderServer(W: number, H: number, t: number, state = IDLE, seed
 	for (let n = 0; n < 70; n++) {
 		const y = Math.round(ry + Math.sqrt(rng()) * (groundY - ry));
 		const side = rng();
-		const x = side < 0.4 ? rx + randInt(0, 1) : side < 0.8 ? rx + rw - randInt(1, 2) : rx + randInt(0, rw - 1);
+		const x =
+			side < 0.4
+				? rx + randInt(0, 1)
+				: side < 0.8
+					? rx + rw - randInt(1, 2)
+					: rx + randInt(0, rw - 1);
 		if (side >= 0.8 && y > ry + 2) continue;
 		set(x, y, rng() < 0.4 ? C.rustLight : C.rust);
 	}
@@ -217,7 +249,8 @@ export function renderServer(W: number, H: number, t: number, state = IDLE, seed
 			rect(ix, uy, iw, u.h, C.vent);
 			// 空槽裡垂下的排線
 			const lx = ix + randInt(6, iw - 6);
-			for (let j = 0; j < u.h + randInt(1, 3); j++) set(lx + (j > 2 ? 1 : 0), uy + j, C.cable);
+			for (let j = 0; j < u.h + randInt(1, 3); j++)
+				set(lx + (j > 2 ? 1 : 0), uy + j, C.cable);
 			uy += u.h + 1;
 			continue;
 		}
@@ -291,11 +324,12 @@ export function renderServer(W: number, H: number, t: number, state = IDLE, seed
 	}
 
 	// ── 機櫃上的 CRT 螢幕 ──
+	const mw = 20;
+	const mh = 14;
+	const mx = rx + 6;
+	const my = ry - mh;
+	const crt = { x: mx, y: my, w: mw, h: mh };
 	{
-		const mw = 20;
-		const mh = 14;
-		const mx = rx + 6;
-		const my = ry - mh;
 		rect(mx, my, mw, mh, C.casing);
 		for (let i = 0; i < mw; i++) set(mx + i, my, C.casingLight);
 		for (let j = 0; j < mh; j++) set(mx, my + j, C.casingLight);
@@ -316,16 +350,43 @@ export function renderServer(W: number, H: number, t: number, state = IDLE, seed
 			// 開機自檢：文字一行行往上捲
 			const scroll = Math.floor(bootT * 8);
 			for (let j = 0; j < 4; j++) {
-				const len = 3 + ((scroll + j) * 5) % 11;
-				for (let i = 0; i < Math.min(len, sw - 2); i++) set(sx + 1 + i, sy + 1 + j * 2, C.glow, 0.8);
+				const len = 3 + (((scroll + j) * 5) % 11);
+				for (let i = 0; i < Math.min(len, sw - 2); i++)
+					set(sx + 1 + i, sy + 1 + j * 2, C.glow, 0.8);
 			}
 		} else {
 			lines.forEach(([x0, len], j) => {
 				for (let i = 0; i < len; i++)
-					if ((i * 7 + j * 3) % 5 !== 0) set(sx + x0 + i, sy + 1 + j * 2, booted ? C.glow : C.glowDim, flicker * (booted ? 0.7 : 1));
+					if ((i * 7 + j * 3) % 5 !== 0)
+						set(
+							sx + x0 + i,
+							sy + 1 + j * 2,
+							booted ? C.glow : C.glowDim,
+							flicker * (booted ? 0.7 : 1)
+						);
 			});
 		}
-		if (booted) {
+		if (booted && state.updateReady) {
+			// 有可用更新：閃爍的下載箭頭與琥珀色外框
+			const on = blink(0.9, 0.6);
+			const bx = sx + sw - 5;
+			const by = sy;
+			const c = on ? C.ledAmber : C.ledAmberOff;
+			for (let j = 0; j < 4; j++) set(bx + 1, by + j, c);
+			set(bx, by + 2, c);
+			set(bx + 2, by + 2, c);
+			for (let i = -1; i <= 3; i++) set(bx + i, by + 5, c);
+			if (on) {
+				for (let i = 0; i < mw; i++) {
+					set(mx + i, my, C.ledAmber, 0.5);
+					set(mx + i, my + mh - 1, C.ledAmber, 0.5);
+				}
+				for (let j = 0; j < mh; j++) {
+					set(mx, my + j, C.ledAmber, 0.5);
+					set(mx + mw - 1, my + j, C.ledAmber, 0.5);
+				}
+			}
+		} else if (booted) {
 			// 打勾
 			const bx = sx + sw - 6;
 			const by = sy + 1;
@@ -353,12 +414,14 @@ export function renderServer(W: number, H: number, t: number, state = IDLE, seed
 		}
 		if (blink(1, 0.5)) rect(sx + 1, sy + 7, 2, 1, C.glow);
 		// 掃描線
-		for (let j = 1; j < sh; j += 2) for (let i = 0; i < sw; i++) set(sx + i, sy + j, C.screen, 0.35);
+		for (let j = 1; j < sh; j += 2)
+			for (let i = 0; i < sw; i++) set(sx + i, sy + j, C.screen, 0.35);
 		for (let n = 0; n < 6; n++) set(mx + randInt(1, mw - 2), my + mh - 1, C.rust);
 	}
 
 	// ── 爬上機櫃的藤蔓 ──
-	const sway = (x: number, h: number) => Math.sin(t * 1.1 + x * 0.13) * Math.sin(t * 0.37 + x * 0.05) * h * 0.12;
+	const sway = (x: number, h: number) =>
+		Math.sin(t * 1.1 + x * 0.13) * Math.sin(t * 0.37 + x * 0.05) * h * 0.12;
 	{
 		const vx = rx + rw - 1;
 		let x = vx;
@@ -376,7 +439,9 @@ export function renderServer(W: number, H: number, t: number, state = IDLE, seed
 			const x2 = vx - i;
 			set(x2, ry - 1 + (i % 5 === 0 ? 1 : 0), C.vine);
 			if (i % 4 === 1) set(x2, ry - 2, C.leaf);
-			if (i % 6 === 3) for (let j = 1; j < randInt(3, 9); j++) set(x2, ry + j, j % 3 === 0 ? C.leaf : C.vine);
+			if (i % 6 === 3)
+				for (let j = 1; j < randInt(3, 9); j++)
+					set(x2, ry + j, j % 3 === 0 ? C.leaf : C.vine);
 		}
 		const lx = rx;
 		for (let y = groundY; y > groundY - 22; y--) {
@@ -402,7 +467,8 @@ export function renderServer(W: number, H: number, t: number, state = IDLE, seed
 			set(stX, housingTop + j, C.metalLight);
 			set(stX + stW - 1, housingTop + j, C.metalDark);
 		}
-		for (let n = 0; n < 10; n++) set(stX + randInt(0, stW - 1), randInt(housingTop + 1, groundY - 4), C.rust);
+		for (let n = 0; n < 10; n++)
+			set(stX + randInt(0, stW - 1), randInt(housingTop + 1, groundY - 4), C.rust);
 		rect(station.x - 1, station.y - 1, station.w + 2, station.h + 2, C.metalLight);
 		rect(station.x, station.y, station.w, station.h, C.slot);
 		set(station.x + station.w - 1, station.y + 2, C.copper);
@@ -418,12 +484,19 @@ export function renderServer(W: number, H: number, t: number, state = IDLE, seed
 			if (state.station === 'full') c = C.ledGreen;
 			else if (state.station === 'charging') {
 				const done = progress * segs;
-				if (i < Math.floor(done) || (i === Math.floor(done) && blink(0.6, 0.5))) c = C.ledGreen;
+				if (i < Math.floor(done) || (i === Math.floor(done) && blink(0.6, 0.5)))
+					c = C.ledGreen;
 			}
 			rect(stX + 3 + i * 4, housingTop + 2, 3, 2, c);
 		}
 		const led =
-			state.station === 'full' ? C.ledGreen : state.station === 'charging' ? (blink(0.8, 0.5) ? C.ledAmber : C.ledAmberOff) : C.ledRed;
+			state.station === 'full'
+				? C.ledGreen
+				: state.station === 'charging'
+					? blink(0.8, 0.5)
+						? C.ledAmber
+						: C.ledAmberOff
+					: C.ledRed;
 		set(stX + stW - 3, housingTop + 2, led);
 		set(stX + stW - 3, housingTop + 3, led, 0.5);
 
@@ -439,12 +512,12 @@ export function renderServer(W: number, H: number, t: number, state = IDLE, seed
 				const x = pX + i + j;
 				const y = poleTop - ph + j;
 				const frame = j === 0 || j === ph - 1 || i === 0 || i === pw - 1;
-				let c = frame ? C.metalLight : (i % 4 === 0 || j === 3) ? C.panelGrid : C.panel;
+				let c = frame ? C.metalLight : i % 4 === 0 || j === 3 ? C.panelGrid : C.panel;
 				if (!frame && Math.abs(i - 9 - j * 1.5) < 0.6) c = C.panelCrack;
 				set(x, y, c);
 				// 充電時光澤掃過面板
 				if (!frame && state.station === 'charging') {
-					const g = (t * 12) % (pw + 10) - 5;
+					const g = ((t * 12) % (pw + 10)) - 5;
 					if (Math.abs(i - j - g) < 1.2) set(x, y, C.panelGlint, 0.6);
 				}
 			}
@@ -466,7 +539,7 @@ export function renderServer(W: number, H: number, t: number, state = IDLE, seed
 		const shade = Math.min(3, Math.floor(grassRng() * 2 + near * 2));
 		for (let j = 0; j < h; j++) {
 			const k = j / h;
-			const dx = Math.round((lean * j + sway(x, h) * k * k) );
+			const dx = Math.round(lean * j + sway(x, h) * k * k);
 			set(x + dx, base - j, C.grass[j > h * 0.6 ? Math.min(3, shade + 1) : shade]);
 		}
 		if (h > 10 && grassRng() < 0.35) {
@@ -496,5 +569,5 @@ export function renderServer(W: number, H: number, t: number, state = IDLE, seed
 		set(x, y + 1, C.firefly, a * 0.25);
 	}
 
-	return { data, slot, station };
+	return { data, slot, station, crt };
 }

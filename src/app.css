@@ -1,1 +1,28 @@
 @import 'tailwindcss';
+
+
+html[data-era='modern'] {
+	color-scheme: dark;
+}
+
+html[data-era='modern'] body {
+	background: #0f1113;
+	cursor: auto;
+}
+
+
+.crt,
+.server-ruin,
+.modern-ui {
+	transition: opacity 0.6s ease;
+}
+
+html.warp-hide-ui :is(.crt, .server-ruin, .modern-ui, .toast) {
+	opacity: 0;
+	pointer-events: none;
+}
+
+
+html[data-era='modern'] .era-ruins {
+	display: none;
+}
