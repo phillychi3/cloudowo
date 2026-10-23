@@ -26,17 +26,19 @@ export type CityFrame = {
 	width: number;
 	height: number;
 	data: Uint8ClampedArray<ArrayBuffer>;
+	/** 每個像素的自發光強度 0–255，日夜光影不會壓暗這些像素 */
+	glow: Uint8Array;
 	lights: Light[];
 	scene: Scene;
 };
 
-const hex = (s: string): RGB => [
+export const hex = (s: string): RGB => [
 	parseInt(s.slice(1, 3), 16),
 	parseInt(s.slice(3, 5), 16),
 	parseInt(s.slice(5, 7), 16)
 ];
 
-const lerp = (a: RGB, b: RGB, t: number): RGB => [
+export const lerp = (a: RGB, b: RGB, t: number): RGB => [
 	Math.round(a[0] + (b[0] - a[0]) * t),
 	Math.round(a[1] + (b[1] - a[1]) * t),
 	Math.round(a[2] + (b[2] - a[2]) * t)
@@ -48,7 +50,7 @@ const BAYER = [
 	[3, 11, 1, 9],
 	[15, 7, 13, 5]
 ];
-const dither = (x: number, y: number) => (BAYER[y & 3][x & 3] + 0.5) / 16;
+export const dither = (x: number, y: number) => (BAYER[y & 3][x & 3] + 0.5) / 16;
 
 // 不消耗 rng 的穩定雜湊，全盛版額外的細節用它決定，構圖才不會跟廢墟版錯開
 const hash = (x: number, y: number) => {
@@ -146,6 +148,8 @@ export function renderCity(W: number, H: number, seed = 20261023, restored = fal
 	const C = restored ? DUSK : NIGHT;
 	const data = new Uint8ClampedArray(W * H * 4);
 	const layerOf = new Uint8Array(W * H);
+	const glow = new Uint8Array(W * H);
+	const EMIT = new Set<RGB>([...C.lit, ...C.neon, C.lamp, C.slit, C.beaconOn, C.beaconOff]);
 	let curLayer: number = LAYER.sky;
 	const lights: Light[] = [];
 	const rng = mulberry32(seed);
@@ -162,6 +166,7 @@ export function renderCity(W: number, H: number, seed = 20261023, restored = fal
 		data[i + 2] = c[2];
 		data[i + 3] = 255;
 		layerOf[y * W + x] = curLayer;
+		glow[y * W + x] = EMIT.has(c) ? 255 : 0;
 	};
 	// 只屬於廢墟的像素：全盛版照樣消耗 rng，但不畫
 	const ruin = restored ? () => {} : set;
@@ -171,6 +176,7 @@ export function renderCity(W: number, H: number, seed = 20261023, restored = fal
 		data[i] += (c[0] - data[i]) * a;
 		data[i + 1] += (c[1] - data[i + 1]) * a;
 		data[i + 2] += (c[2] - data[i + 2]) * a;
+		if (EMIT.has(c)) glow[i / 4] = Math.max(glow[i / 4], Math.min(255, a * 1000));
 	};
 	const rect = (x: number, y: number, w: number, h: number, c: RGB) => {
 		for (let yy = Math.max(0, y); yy < Math.min(H, y + h); yy++)
@@ -609,6 +615,7 @@ export function renderCity(W: number, H: number, seed = 20261023, restored = fal
 		width: W,
 		height: H,
 		data,
+		glow,
 		lights: finalLights,
 		scene: {
 			restored,

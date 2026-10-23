@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { renderCity, type RGB } from '$lib/ruins/city';
+	import { renderCity, type CityFrame, type RGB } from '$lib/ruins/city';
+	import { applyLight, currentHour, lightAt, toneOf } from '$lib/ruins/daylight';
 	import { createActors, type Put } from '$lib/ruins/actors';
 	import { createFlyers } from '$lib/ruins/flyers';
 	import { era, type Sweep } from '$lib/era.svelte';
@@ -31,6 +32,10 @@
 		let w = 0;
 		let h = 0;
 		let current: ImageData | undefined;
+		let city: CityFrame | undefined;
+		let tone: (c: RGB) => RGB = (c) => c;
+		let toned = new WeakMap<RGB, RGB>();
+		const lit = (frame: CityFrame) => applyLight(frame, lightAt(currentHour(), frame.scene.restored));
 
 		let activeSweep: Sweep | null = null;
 		const target = document.createElement('canvas');
@@ -38,6 +43,9 @@
 		const putOn =
 			(c2d: CanvasRenderingContext2D): Put =>
 			(x, y, c, a = 1) => {
+				let t = toned.get(c);
+				if (!t) toned.set(c, (t = tone(c)));
+				c = t;
 				c2d.fillStyle = `rgba(${c[0]},${c[1]},${c[2]},${a})`;
 				c2d.fillRect(Math.round(x), Math.round(y), 1, 1);
 			};
@@ -50,10 +58,9 @@
 		function drawSweep(sw: Sweep, now: number) {
 			if (sw !== activeSweep) {
 				activeSweep = sw;
-				const city = renderCity(w, h, undefined, sw.dir === 'forward');
 				target.width = w;
 				target.height = h;
-				target.getContext('2d')!.putImageData(new ImageData(city.data, w, h), 0, 0);
+				target.getContext('2d')!.putImageData(lit(renderCity(w, h, undefined, sw.dir === 'forward')), 0, 0);
 			}
 			const k = Math.min(1, Math.max(0, (now - sw.start) / sw.ms));
 			const p = k < 0.5 ? 2 * k * k : 1 - (-2 * k + 2) ** 2 / 2;
@@ -103,7 +110,7 @@
 			if (`${w}x${h}` === size) return;
 			size = `${w}x${h}`;
 
-			const city = renderCity(w, h, undefined, isRestored());
+			city = renderCity(w, h, undefined, isRestored());
 			for (const c of [base, overlay]) {
 				c.width = w;
 				c.height = h;
@@ -117,13 +124,22 @@
 			sky.style.width = `${w * scale}px`;
 			sky.style.height = `${h * scale}px`;
 
-			current = new ImageData(city.data, w, h);
-			baseCtx.putImageData(current, 0, 0);
+			relight();
 			actors = createActors(city);
 			flyers = createFlyers(city, K);
 			activeSweep = null;
 			frame(performance.now());
 		}
+
+		// 依當地時間重新打光；一分鐘的變化很小，不需要每幀算
+		function relight() {
+			if (!city) return;
+			tone = toneOf(lightAt(currentHour(), city.scene.restored));
+			toned = new WeakMap();
+			current = lit(city);
+			if (!era.sweep) baseCtx.putImageData(current, 0, 0);
+		}
+		const lightTimer = setInterval(relight, 60_000);
 
 		let resizeTimer: ReturnType<typeof setTimeout>;
 		const onResize = () => {
@@ -152,6 +168,7 @@
 		return () => {
 			cancelAnimationFrame(raf);
 			clearTimeout(resizeTimer);
+			clearInterval(lightTimer);
 			window.removeEventListener('resize', onResize);
 		};
 	});

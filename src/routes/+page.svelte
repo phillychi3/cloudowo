@@ -736,17 +736,15 @@
 			crosshair;
 	}
 
-	.crt::after {
+	/* 閃爍只留在終端機面板上；背景白天會變亮，全螢幕閃會整片跟著閃 */
+	.terminal-screen::after {
 		content: ' ';
 		display: block;
-		position: fixed;
-		top: 0;
-		left: 0;
-		width: 100vw;
-		height: 100vh;
+		position: absolute;
+		inset: 0;
 		background: rgba(18, 16, 16, 0.1);
 		opacity: 0;
-		z-index: 9999;
+		z-index: 2;
 		pointer-events: none;
 		animation: flicker 0.15s infinite;
 	}
@@ -882,7 +880,7 @@
 			opacity: 0.3;
 		}
 
-		.crt::after {
+		.terminal-screen::after {
 			opacity: 0.1;
 		}
 
